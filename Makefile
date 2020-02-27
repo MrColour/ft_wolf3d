@@ -6,7 +6,7 @@
 #    By: kmira <kmira@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/25 11:13:19 by kmira             #+#    #+#              #
-#    Updated: 2020/02/26 18:24:01 by kmira            ###   ########.fr        #
+#    Updated: 2020/02/26 18:35:57 by kmira            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = wolf3d
 
 FLAGS = -Wall -Wextra -Werror
 # -Wno-deprecated-declarations
-LIB = libglfw3.a
+LIB = lib/libglfw3.a
 INCS = -I includes/
 BINARY_DIR = bin/
 
