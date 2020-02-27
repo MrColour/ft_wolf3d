@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 17:58:30 by kmira             #+#    #+#             */
-/*   Updated: 2020/02/27 02:20:56 by kmira            ###   ########.fr       */
+/*   Updated: 2020/02/27 05:08:33 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@
 
 # include "debug.h"
 # include "libft.h"
+# include "meta_state.h"
+# include "wolf_level_structs.h"
 # include "wolf_structs.h"
 # include "stddef.h"
 
@@ -68,5 +70,13 @@ t_wolf_window	wolf_initialize(void);
 
 void		update_pixels(t_wolf_window *h_wolf_window);
 void		push_pixel(int x, int y, t_color color, uint8_t **pixel_array);
+
+/*
+** -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-
+** file: wolf_destroy.c
+** Description: Deconstructor functions for freeing memory.
+*/
+
+void	wolf_destroy(t_wolf_window *h_wolf_window);
 
 #endif
