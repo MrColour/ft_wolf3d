@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 17:58:30 by kmira             #+#    #+#             */
-/*   Updated: 2020/02/26 16:10:52 by kmira            ###   ########.fr       */
+/*   Updated: 2020/02/26 18:27:12 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,12 @@
 # include <OpenGL/glext.h>
 # include <OpenGL/gl.h>
 # include <OpenGL/glu.h>
+
+# include "glfw3.h"
+# include "glfw3native.h"
+
+# include <stdio.h>
+# include <math.h>
 
 # include "debug.h"
 # include "wolf_structs.h"
@@ -40,6 +46,6 @@
 ** file: initialization.c
 */
 
-void	wolf_initialize(void);
+GLFWwindow *wolf_initialize(void);
 
 #endif

@@ -6,7 +6,7 @@
 #    By: kmira <kmira@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/25 11:13:19 by kmira             #+#    #+#              #
-#    Updated: 2020/02/26 15:58:25 by kmira            ###   ########.fr        #
+#    Updated: 2020/02/26 18:24:01 by kmira            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,10 +14,14 @@ NAME = wolf3d
 
 FLAGS = -Wall -Wextra -Werror
 # -Wno-deprecated-declarations
+LIB = libglfw3.a
 INCS = -I includes/
 BINARY_DIR = bin/
 
-OPENGL = -framework GLUT -framework OpenGL
+OPENGL = \
+		-framework Cocoa \
+		-framework OpenGL \
+		-framework IOKit
 
 FILES = \
 	initialization \
@@ -27,7 +31,7 @@ SRCS = $(addsuffix .c, $(addprefix srcs/, $(FILES)))
 OBJS = $(addsuffix .o, $(FILES))
 
 all: $(OBJS)
-	gcc -o $(NAME) $(FLAGS) $(INCS) $(OPENGL) $(OBJS)
+	gcc -o $(NAME) $(FLAGS) $(INCS) $(OPENGL) $(LIB) $(OBJS)
 
 $(OBJS):
 	gcc -c $(FLAGS) $(INCS) $(SRCS)
