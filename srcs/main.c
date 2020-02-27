@@ -6,50 +6,48 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 14:31:31 by kmira             #+#    #+#             */
-/*   Updated: 2020/02/27 00:43:05 by kmira            ###   ########.fr       */
+/*   Updated: 2020/02/27 02:31:55 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf.h"
 
-void	draw_circle(void)
+void	draw_circle(uint8_t **pixel_array)
 {
-	float	x;
-	float	y;
+	int		x;
+	int		y;
 	float	i;
 	int		j;
+	t_color	color;
 
 	j = 0;
 	i = 0;
-	glClear(GL_COLOR_BUFFER_BIT);
-	glBegin(GL_POINTS);
-	glColor3ub(250, 0, 0);
+	color.col_32bit = 0x05dfd7;
 	while (i < (M_PI / 2))
 	{
-		x = 256 * cos(i);
-		y = 256 * sin(i);
-		glVertex2i(x, y);
+		x = (int)256 * cos(i);
+		y = (int)256 * sin(i);
+		push_pixel(x, y, color, pixel_array);
 		i += 0.001;
 		j++;
 	}
-	glEnd();
-	glFlush();
 }
 
 int		main(void)
 {
-	GLFWwindow *window;
+	t_wolf_window	h_wolf_window;
 
-	window = wolf_initialize();
+	h_wolf_window = wolf_initialize();
 
 	glfwSwapInterval(1);
-	while (!glfwWindowShouldClose(window))
+	while (!glfwWindowShouldClose(h_wolf_window.window))
 	{
-		draw_circle();
-		glfwSwapBuffers(window);
+		draw_circle(h_wolf_window.pixel_array);
+		update_pixels(&h_wolf_window);
+		glfwSwapBuffers(h_wolf_window.window);
 		glfwPollEvents();
-		if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
-			glfwSetWindowShouldClose(window, GL_TRUE);
+		if (glfwGetKey(h_wolf_window.window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
+			glfwSetWindowShouldClose(h_wolf_window.window, GL_TRUE);
 	}
 	glfwTerminate();
 }

@@ -6,7 +6,7 @@
 #    By: kmira <kmira@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/25 11:13:19 by kmira             #+#    #+#              #
-#    Updated: 2020/02/26 18:35:57 by kmira            ###   ########.fr        #
+#    Updated: 2020/02/27 01:27:04 by kmira            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,6 +15,7 @@ NAME = wolf3d
 FLAGS = -Wall -Wextra -Werror
 # -Wno-deprecated-declarations
 LIB = lib/libglfw3.a
+LIBFT = srcs/libft/libft.a
 INCS = -I includes/
 BINARY_DIR = bin/
 
@@ -26,12 +27,16 @@ OPENGL = \
 FILES = \
 	initialization \
 	main \
+	window_render \
 
 SRCS = $(addsuffix .c, $(addprefix srcs/, $(FILES)))
 OBJS = $(addsuffix .o, $(FILES))
 
-all: $(OBJS)
-	gcc -o $(NAME) $(FLAGS) $(INCS) $(OPENGL) $(LIB) $(OBJS)
+all: $(LIBFT) $(OBJS)
+	gcc -o $(NAME) $(FLAGS) $(INCS) $(OPENGL) $(LIB) $(LIBFT) $(OBJS)
+
+$(LIBFT):
+	make -C srcs/libft/
 
 $(OBJS):
 	gcc -c $(FLAGS) $(INCS) $(SRCS)
