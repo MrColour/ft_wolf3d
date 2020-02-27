@@ -6,13 +6,13 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 14:31:31 by kmira             #+#    #+#             */
-/*   Updated: 2020/02/26 18:33:50 by kmira            ###   ########.fr       */
+/*   Updated: 2020/02/27 00:35:20 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf.h"
 
-void	display(void)
+void	draw_circle(void)
 {
 	float	x;
 	float	y;
@@ -25,7 +25,7 @@ void	display(void)
 	glColor3ub(250, 0, 0);
 	glBegin(GL_POINTS);
 	glColor3ub(250, 0, 0);
-	while (i < 2 * (M_PI))
+	while (i < (M_PI / 2))
 	{
 		if (j % 2 == 0)
 			glColor3ub(0, 0, 250);
@@ -43,13 +43,14 @@ void	display(void)
 
 int		main(void)
 {
-	GLFWwindow* window;
+	GLFWwindow *window;
 
 	window = wolf_initialize();
-	display();
 
+	glfwSwapInterval(1);
 	while (!glfwWindowShouldClose(window))
 	{
+		draw_circle();
 		glfwSwapBuffers(window);
 		glfwPollEvents();
 		if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
