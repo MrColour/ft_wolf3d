@@ -6,13 +6,14 @@
 #    By: kmira <kmira@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/25 11:13:19 by kmira             #+#    #+#              #
-#    Updated: 2020/02/25 18:08:29 by kmira            ###   ########.fr        #
+#    Updated: 2020/02/26 15:58:25 by kmira            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = wolf3d
 
-FLAGS = -Wall -Wextra -Werror -Wno-deprecated-declarations
+FLAGS = -Wall -Wextra -Werror
+# -Wno-deprecated-declarations
 INCS = -I includes/
 BINARY_DIR = bin/
 
