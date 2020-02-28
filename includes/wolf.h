@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 17:58:30 by kmira             #+#    #+#             */
-/*   Updated: 2020/02/27 22:44:43 by kmira            ###   ########.fr       */
+/*   Updated: 2020/02/28 03:39:28 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,11 @@
 # include <stdio.h>
 # include <math.h>
 # include <stdlib.h>
+# include <fcntl.h>
+
+# include <sys/types.h>
+# include <sys/uio.h>
+# include <unistd.h>
 
 # include "debug.h"
 # include "libft.h"
@@ -104,5 +109,14 @@ int				level_is_running_first_level(t_level_context *self);
 t_level_context	*run_level_first_level(t_level_context *self);
 t_level_context	*get_next_level_first_level(struct s_level_context *self);
 int				clean_level_first_level(t_level_context *self);
+
+/*
+** -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-
+** file: assets.c
+*/
+
+t_texture	*create_texture(char *file_path);
+
+void		draw_texture(t_texture *texture, t_wolf_window *mgr_wolf_window);
 
 #endif

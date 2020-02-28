@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 17:57:22 by kmira             #+#    #+#             */
-/*   Updated: 2020/02/27 16:14:35 by kmira            ###   ########.fr       */
+/*   Updated: 2020/02/28 00:13:36 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,8 @@ t_wolf_window	wolf_initialize(void)
 	glClear(GL_COLOR_BUFFER_BIT);
 	h_wolf_win.bpp = BYTES_PER_PIXEL;
 	h_wolf_win.pixel_array = create_pixel_array(WIN_WIDTH, WIN_HEIGHT, h_wolf_win.bpp);
+
+	h_wolf_win.background_color.col_32bit = 0x000000;
 
 	game_running(GAME_STATE_SET, GAME_STATE_OK);
 	return (h_wolf_win);

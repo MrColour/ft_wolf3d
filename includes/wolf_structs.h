@@ -6,19 +6,12 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 17:57:44 by kmira             #+#    #+#             */
-/*   Updated: 2020/02/27 16:39:17 by kmira            ###   ########.fr       */
+/*   Updated: 2020/02/28 03:06:38 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef WOLF_STRUCTS_H
 # define WOLF_STRUCTS_H
-
-typedef	struct	s_wolf_window
-{
-	GLFWwindow	*window;
-	uint8_t		**pixel_array;
-	int			bpp;
-}				t_wolf_window;
 
 /*
 ** The union has its bits in a certain order, do not change
@@ -53,5 +46,22 @@ typedef union	u_vector3i
 		int		z;
 	}			coord;
 }				t_vector3i;
+
+typedef struct	s_texture
+{
+	uint8_t		*memory_array;
+	int			width;
+	int			height;
+	t_vector3i	pos;
+}				t_texture;
+
+typedef	struct	s_wolf_window
+{
+	GLFWwindow	*window;
+	uint8_t		**pixel_array;
+	int			bpp;
+
+	t_color		background_color;
+}				t_wolf_window;
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/27 01:19:10 by kmira             #+#    #+#             */
-/*   Updated: 2020/02/27 22:29:10 by kmira            ###   ########.fr       */
+/*   Updated: 2020/02/28 00:24:15 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,9 +56,25 @@ void		clear_pixel_array(uint8_t **pixel_array)
 			sizeof(**pixel_array) * (WIN_HEIGHT * WIN_WIDTH * BPP));
 }
 
+void		fill_with_background(uint8_t **pixel_array, t_color color)
+{
+	size_t		pixel;
+	uint8_t		*memory;
+
+	pixel = 0;
+	memory = pixel_array[0];
+	while (pixel < WIN_HEIGHT * WIN_WIDTH * BPP)
+	{
+		*(uint32_t *)(&memory[pixel]) = color.col_32bit;
+		pixel += BPP;
+	}
+}
+
 void		refresh_screen(t_wolf_window *mgr_wolf_window)
 {
 	update_pixels(mgr_wolf_window);
 	glfwSwapBuffers(mgr_wolf_window->window);
 	clear_pixel_array(mgr_wolf_window->pixel_array);
+	fill_with_background(mgr_wolf_window->pixel_array,
+						mgr_wolf_window->background_color);
 }

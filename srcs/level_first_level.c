@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/27 17:24:06 by kmira             #+#    #+#             */
-/*   Updated: 2020/02/27 22:48:45 by kmira            ###   ########.fr       */
+/*   Updated: 2020/02/28 03:43:25 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,12 @@ int				init_first_level(t_level_context *level, t_wolf_window *mgr_wolf_window)
 	self_full = (t_level_first *)level;
 	self_full->h_game_state = 0;
 	self_full->bounces = 0;
+
+	mgr_wolf_window->background_color.col_32bit = 0x777777;
+
+	self_full->test_text = create_texture("resources/con_play_tex");
+	self_full->test_text->pos.coord.x = WIN_WIDTH / 2;
+	self_full->test_text->pos.coord.y = WIN_HEIGHT / 2;
 	return (1);
 }
 
@@ -159,6 +165,8 @@ t_level_context	*run_level_first_level(t_level_context *self)
 				self->level_ticks = 0;
 			}
 		}
+
+		draw_texture(self_full->test_text, mgr_wolf_window);
 
 		circle_logic_c(&location_1, &velocity_1, &self_full->bounces);
 		circle_logic_c(&location_2, &velocity_2, &self_full->bounces);

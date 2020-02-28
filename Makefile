@@ -6,7 +6,7 @@
 #    By: kmira <kmira@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/25 11:13:19 by kmira             #+#    #+#              #
-#    Updated: 2020/02/27 17:48:24 by kmira            ###   ########.fr        #
+#    Updated: 2020/02/28 03:39:42 by kmira            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,11 +25,13 @@ OPENGL = \
 		-framework IOKit
 
 FILES = \
+	assets \
 	initialization \
 	level_first_level \
 	level_main_menu \
 	main \
 	meta_state \
+	texture_render \
 	window_render \
 	wolf_destroy \
 
