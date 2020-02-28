@@ -6,14 +6,14 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/27 04:56:55 by kmira             #+#    #+#             */
-/*   Updated: 2020/02/27 05:07:42 by kmira            ###   ########.fr       */
+/*   Updated: 2020/02/27 17:17:25 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf.h"
 
-void	wolf_destroy(t_wolf_window *h_wolf_window)
+void	wolf_destroy(t_wolf_window *mgr_wolf_window)
 {
-	(void)h_wolf_window;
+	(void)mgr_wolf_window;
 	return ;
 }

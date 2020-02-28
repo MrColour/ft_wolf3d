@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/27 04:07:47 by kmira             #+#    #+#             */
-/*   Updated: 2020/02/27 04:22:01 by kmira            ###   ########.fr       */
+/*   Updated: 2020/02/27 17:36:47 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # define GAME_STATE_SET 2
 
 # define GAME_STATE_OK 42
+# define SHUTDOWN_GAME -1
 
 int		game_state(void);
 int		game_running(int option, int value);

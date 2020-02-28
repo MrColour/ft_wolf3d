@@ -6,7 +6,7 @@
 #    By: kmira <kmira@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/25 11:13:19 by kmira             #+#    #+#              #
-#    Updated: 2020/02/27 04:58:45 by kmira            ###   ########.fr        #
+#    Updated: 2020/02/27 17:48:24 by kmira            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +26,8 @@ OPENGL = \
 
 FILES = \
 	initialization \
+	level_first_level \
+	level_main_menu \
 	main \
 	meta_state \
 	window_render \
