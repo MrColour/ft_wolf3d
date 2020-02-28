@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/27 17:24:06 by kmira             #+#    #+#             */
-/*   Updated: 2020/02/27 17:55:29 by kmira            ###   ########.fr       */
+/*   Updated: 2020/02/27 22:48:45 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,18 +58,44 @@ t_level_context	*first_level(t_wolf_window *mgr_wolf_window)
 	ft_bzero(self_full, sizeof(*self_full));
 	self_full->common_level.init_self = init_first_level;
 	self_full->common_level.mgr_wolf_window = mgr_wolf_window;
-
 	result = (t_level_context *)self_full;
 	return (result);
 }
 
 int				init_first_level(t_level_context *level, t_wolf_window *mgr_wolf_window)
 {
+	t_level_first	*self_full;
+
 	level->mgr_wolf_window = mgr_wolf_window;
 	level->run_level = run_level_first_level;
 	level->get_next_level = get_next_level_first_level;
 	level->clean_level = clean_level_first_level;
+	level->is_running = level_is_running_first_level;
+
+	level->level_ticks = 0;
+
+	self_full = (t_level_first *)level;
+	self_full->h_game_state = 0;
+	self_full->bounces = 0;
 	return (1);
+}
+
+int				level_is_running_first_level(t_level_context *self)
+{
+	int				result;
+	t_level_first	*self_full;
+
+	result = 1;
+	self_full = (t_level_first *)self;
+	if (glfwWindowShouldClose(self->mgr_wolf_window->window))
+		result = 0;
+	else if (self_full->bounces >= 100)
+		result = 0;
+	else if (self_full->h_game_state == 'e')
+		result = 0;
+	else if (self_full->h_game_state == '\007')
+		result = 0;
+	return (result);
 }
 
 t_level_context	*run_level_first_level(t_level_context *self)
@@ -86,7 +112,6 @@ t_level_context	*run_level_first_level(t_level_context *self)
 	t_vector3i		velocity_2;
 	t_vector3i		location_2;
 
-	int				bounces;
 
 	location_1.vector[X] = WIN_WIDTH / 2; location_1.vector[Y] = WIN_HEIGHT / 2;
 	velocity_1.vector[X] = 5; velocity_1.vector[Y] = 1;
@@ -94,16 +119,10 @@ t_level_context	*run_level_first_level(t_level_context *self)
 	location_2.vector[X] = WIN_WIDTH / 3; location_2.vector[Y] = WIN_HEIGHT / 4;
 	velocity_2.vector[X] = -3; velocity_2.vector[Y] = 2;
 
-	bounces = 0;
 	mgr_wolf_window = self->mgr_wolf_window;
-	while (!glfwWindowShouldClose(mgr_wolf_window->window) && bounces < 100)
+
+	while (self->is_running(self))
 	{
-		draw_circle_c(mgr_wolf_window->pixel_array, location_1.coord.x, location_1.coord.y, 0xfe346e);
-		draw_circle_c(mgr_wolf_window->pixel_array, location_2.coord.x, location_2.coord.y, 0xe8f044);
-
-		update_pixels(mgr_wolf_window);
-
-		glfwSwapBuffers(mgr_wolf_window->window);
 		glfwPollEvents();
 		if (glfwGetKey(mgr_wolf_window->window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
 		{
@@ -111,11 +130,42 @@ t_level_context	*run_level_first_level(t_level_context *self)
 			game_running(GAME_STATE_SET, SHUTDOWN_GAME);
 			self_full->h_next_state = 'e';
 		}
+		else if (glfwGetKey(mgr_wolf_window->window, GLFW_KEY_SPACE) == GLFW_PRESS && self_full->h_toggle == 0)
+		{
+			self_full->h_game_state ^= ' ';
+			self_full->h_toggle = 1;
+			self->level_ticks = 15;
+		}
+		else if (glfwGetKey(mgr_wolf_window->window, GLFW_KEY_ENTER) == GLFW_PRESS)
+			self_full->h_game_state = '\007';
 
-		circle_logic_c(&location_1, &velocity_1, &bounces);
-		circle_logic_c(&location_2, &velocity_2, &bounces);
+		if (self_full->h_game_state == ' ')
+		{
+			draw_circle_c(mgr_wolf_window->pixel_array, location_1.coord.x, location_1.coord.y, 0xFFFFFF);
+			draw_circle_c(mgr_wolf_window->pixel_array, location_2.coord.x, location_2.coord.y, 0xFFFFFF);
+			if (self->level_ticks % 25 == 0)
+			{
+				self_full->h_toggle = 0;
+				self->level_ticks = 0;
+			}
+		}
+		else
+		{
+			draw_circle_c(mgr_wolf_window->pixel_array, location_1.coord.x, location_1.coord.y, 0xfe346e);
+			draw_circle_c(mgr_wolf_window->pixel_array, location_2.coord.x, location_2.coord.y, 0xe8f044);
+			if (self->level_ticks % 25 == 0)
+			{
+				self_full->h_toggle = 0;
+				self->level_ticks = 0;
+			}
+		}
 
-		clear_pixel_array(mgr_wolf_window->pixel_array);
+		circle_logic_c(&location_1, &velocity_1, &self_full->bounces);
+		circle_logic_c(&location_2, &velocity_2, &self_full->bounces);
+
+		refresh_screen(mgr_wolf_window);
+
+		self->level_ticks++;
 	}
 	new_level = self->get_next_level(self);
 	self->clean_level(self);
