@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 17:58:30 by kmira             #+#    #+#             */
-/*   Updated: 2020/02/27 05:08:33 by kmira            ###   ########.fr       */
+/*   Updated: 2020/02/27 16:46:52 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@
 # define WIN_NAME "ft_Wolfenstien 3D"
 
 # define BYTES_PER_PIXEL 4
-# define BBP BYTES_PER_PIXEL
+# define BPP BYTES_PER_PIXEL
 
 # define RED_CHANNEL 2
 # define GREEN_CHANNEL 1
@@ -70,6 +70,7 @@ t_wolf_window	wolf_initialize(void);
 
 void		update_pixels(t_wolf_window *h_wolf_window);
 void		push_pixel(int x, int y, t_color color, uint8_t **pixel_array);
+void		clear_pixel_array(uint8_t **pixel_array);
 
 /*
 ** -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-

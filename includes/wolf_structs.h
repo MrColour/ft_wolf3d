@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 17:57:44 by kmira             #+#    #+#             */
-/*   Updated: 2020/02/27 02:31:12 by kmira            ###   ########.fr       */
+/*   Updated: 2020/02/27 16:39:17 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,5 +38,20 @@ typedef union	u_color
 		uint8_t	alpha;
 	}			channel;
 }				t_color;
+
+# define X 0
+# define Y 1
+# define Z 2
+
+typedef union	u_vector3i
+{
+	int			vector[3];
+	struct
+	{
+		int		x;
+		int		y;
+		int		z;
+	}			coord;
+}				t_vector3i;
 
 #endif

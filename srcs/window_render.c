@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/27 01:19:10 by kmira             #+#    #+#             */
-/*   Updated: 2020/02/27 02:31:19 by kmira            ###   ########.fr       */
+/*   Updated: 2020/02/27 16:55:07 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static void	update_pixels_(uint8_t **pixel_arr, int width, int height, int bpp)
 			glColor3ub(pixel_arr[row][col * bpp + RED_CHANNEL],
 						pixel_arr[row][col * bpp + GREEN_CHANNEL],
 						pixel_arr[row][col * bpp + BLUE_CHANNEL]);
-			glVertex2i(row, col);
+			glVertex2i(col, row);
 			col++;
 		}
 		row++;
@@ -46,6 +46,12 @@ void		update_pixels(t_wolf_window *h_wolf_window)
 
 void		push_pixel(int x, int y, t_color color, uint8_t **pixel_array)
 {
-	if (0 < x && x < WIN_HEIGHT && 0 < y && y < WIN_WIDTH)
-		*(t_color *)(&pixel_array[x][y * BBP]) = color;
+	if (0 < x && x < WIN_WIDTH && 0 < y && y < WIN_HEIGHT)
+		*(t_color *)(&pixel_array[y][x * BPP]) = color;
+}
+
+void		clear_pixel_array(uint8_t **pixel_array)
+{
+	ft_bzero(pixel_array[0],
+			sizeof(**pixel_array) * (WIN_HEIGHT * WIN_WIDTH * BPP));
 }

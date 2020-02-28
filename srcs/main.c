@@ -6,13 +6,15 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 14:31:31 by kmira             #+#    #+#             */
-/*   Updated: 2020/02/27 05:09:40 by kmira            ###   ########.fr       */
+/*   Updated: 2020/02/27 16:55:12 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf.h"
 
-void	draw_circle(uint8_t **pixel_array)
+#define CIR_SIZE 50
+
+void	draw_circle(uint8_t **pixel_array, int x_center, int y_center)
 {
 	int		x;
 	int		y;
@@ -22,11 +24,11 @@ void	draw_circle(uint8_t **pixel_array)
 
 	j = 0;
 	i = 0;
-	color.col_32bit = 0x05dfd7;
-	while (i < (M_PI / 2))
+	color.col_32bit = 0xfe346e;
+	while (i < (M_PI * 2))
 	{
-		x = (int)256 * cos(i);
-		y = (int)256 * sin(i);
+		x = (int)CIR_SIZE * cos(i) + x_center;
+		y = (int)CIR_SIZE * sin(i) + y_center;
 		push_pixel(x, y, color, pixel_array);
 		i += 0.001;
 		j++;
@@ -35,17 +37,32 @@ void	draw_circle(uint8_t **pixel_array)
 
 t_level_context	*run_main_menu(t_level_context *self)
 {
-	t_wolf_window *h_wolf_window;
+	t_wolf_window	*h_wolf_window;
+	t_vector3i		velocity;
+	t_vector3i		location;
 
 	h_wolf_window = self->h_wolf_window;
+
+	location.vector[X] = WIN_WIDTH / 2;
+	location.vector[Y] = WIN_HEIGHT / 2;
+
+	velocity.vector[X] = 5;
+	velocity.vector[Y] = 2;
 	while (!glfwWindowShouldClose(h_wolf_window->window))
 	{
-		draw_circle(h_wolf_window->pixel_array);
+		draw_circle(h_wolf_window->pixel_array, location.coord.x, location.coord.y);
 		update_pixels(h_wolf_window);
 		glfwSwapBuffers(h_wolf_window->window);
 		glfwPollEvents();
 		if (glfwGetKey(h_wolf_window->window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
 			glfwSetWindowShouldClose(h_wolf_window->window, GL_TRUE);
+		location.coord.x += velocity.vector[X];
+		location.coord.y += velocity.vector[Y];
+		if (location.coord.x + CIR_SIZE >= WIN_WIDTH || location.coord.x - CIR_SIZE <= 0)
+			velocity.vector[X] *= -1;
+		if (location.coord.y + CIR_SIZE >= WIN_HEIGHT || location.coord.y - CIR_SIZE <= 0)
+			velocity.vector[Y] *= -1;
+		clear_pixel_array(h_wolf_window->pixel_array);
 	}
 	return (NULL);
 }
