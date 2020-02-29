@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/27 17:24:06 by kmira             #+#    #+#             */
-/*   Updated: 2020/02/28 03:43:25 by kmira            ###   ########.fr       */
+/*   Updated: 2020/02/29 00:45:07 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,8 +142,6 @@ t_level_context	*run_level_first_level(t_level_context *self)
 			self_full->h_toggle = 1;
 			self->level_ticks = 15;
 		}
-		else if (glfwGetKey(mgr_wolf_window->window, GLFW_KEY_ENTER) == GLFW_PRESS)
-			self_full->h_game_state = '\007';
 
 		if (self_full->h_game_state == ' ')
 		{

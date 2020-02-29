@@ -1,9 +1,17 @@
 from PIL import Image
+import sys
 
-im = Image.open('play_tex.png') # Can be many different formats.
+# print(sys.argv[1])
+
+file_dump = 'con_' + str(sys.argv[1])[0:-4]
+
+print(file_dump)
+
+# im = Image.open(sys.argv[1]) # Can be many different formats.
+im = Image.open(sys.argv[1]) # Can be many different formats.
 pix = im.load()
 x, y = im.size # Get the width and hight of the image for iterating over
-outfile = open('con_play_tex', 'w')
+outfile = open(file_dump, 'w')
 
 print(x)
 print(y)
@@ -12,8 +20,8 @@ outfile.write("H" + str(y) + "\n")
 
 for i in range(x):
 	for j in range(y):
-		r = pix[i, j][0]
+		b = pix[i, j][0]
 		g = pix[i, j][1]
-		b = pix[i, j][2]
+		r = pix[i, j][2]
 		a = pix[i, j][3]
 		outfile.write("{:3d}{:3d}{:3d}{:3d}".format(r, g, b, a) + '\n')

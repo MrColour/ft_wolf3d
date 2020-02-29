@@ -6,12 +6,14 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 17:57:44 by kmira             #+#    #+#             */
-/*   Updated: 2020/02/28 03:06:38 by kmira            ###   ########.fr       */
+/*   Updated: 2020/02/28 23:52:40 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef WOLF_STRUCTS_H
 # define WOLF_STRUCTS_H
+
+typedef struct	s_level_context t_level_context;
 
 /*
 ** The union has its bits in a certain order, do not change
@@ -54,6 +56,17 @@ typedef struct	s_texture
 	int			height;
 	t_vector3i	pos;
 }				t_texture;
+
+typedef struct	s_animation
+{
+	int					tick_change;
+	int					*individual_lock;
+	int					*shared_lock;
+	t_texture			*texture;
+	struct s_animation	*next;
+
+	int					(*update_sprite)(struct s_animation *self, t_level_context *level);
+}				t_animation;
 
 typedef	struct	s_wolf_window
 {

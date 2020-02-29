@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/28 00:57:39 by kmira             #+#    #+#             */
-/*   Updated: 2020/02/28 04:09:37 by kmira            ###   ########.fr       */
+/*   Updated: 2020/02/29 00:21:47 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ t_texture	*get_texture(int fd)
 	result = malloc(sizeof(*result));
 	result->width = width;
 	result->height = height;
-	printf("W: %d and H: %d\n", width, height);
 	result->memory_array = malloc(sizeof(*result->memory_array) * (width * height * BPP));
 	i = 0;
 	while (i < width * height)

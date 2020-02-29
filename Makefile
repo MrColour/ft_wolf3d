@@ -6,7 +6,7 @@
 #    By: kmira <kmira@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/25 11:13:19 by kmira             #+#    #+#              #
-#    Updated: 2020/02/28 03:39:42 by kmira            ###   ########.fr        #
+#    Updated: 2020/02/29 00:37:34 by kmira            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,10 @@ OPENGL = \
 		-framework IOKit
 
 FILES = \
+	animations \
 	assets \
+	assets_play_button \
+	assets_tittle \
 	initialization \
 	level_first_level \
 	level_main_menu \
