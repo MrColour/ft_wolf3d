@@ -6,20 +6,20 @@
 #    By: kmira <kmira@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/28 21:32:32 by kmira             #+#    #+#              #
-#    Updated: 2020/02/29 00:39:02 by kmira            ###   ########.fr        #
+#    Updated: 2020/02/29 03:11:03 by kmira            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 FILE_NAMES = \
-	tittle_tex \
-	play_tex \
-	quit_tex \
-	play_selected_tex \
-	quit_selected_tex \
+		tittle \
+		play_active \
+		play_deactive \
+		quit_active \
+		quit_deactive \
 
-PNG_FILES = $(addsuffix .png, $(FILE_NAMES))
+PNG_FILES = $(addsuffix .png, $(addprefix png_files/, $(FILE_NAMES)))
 
-FT_PNG = $(addprefix con_, $(FILE_NAMES))
+FT_PNG = $(addsuffix .ft_png, $(addprefix ft_png_files/, $(FILE_NAMES)))
 
 TEXT = "a"
 

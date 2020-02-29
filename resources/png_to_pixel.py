@@ -3,7 +3,7 @@ import sys
 
 # print(sys.argv[1])
 
-file_dump = 'con_' + str(sys.argv[1])[0:-4]
+file_dump = 'ft_png_files/' + str(sys.argv[1])[9:-4] + '.ft_png'
 
 print(file_dump)
 
