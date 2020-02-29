@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 17:58:30 by kmira             #+#    #+#             */
-/*   Updated: 2020/02/29 00:36:42 by kmira            ###   ########.fr       */
+/*   Updated: 2020/02/29 03:02:26 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,11 @@
 # include "glfw3.h"
 # include "glfw3native.h"
 
-# include <stdio.h>
-# include <math.h>
-# include <stdlib.h>
 # include <fcntl.h>
-
+# include <math.h>
+# include <stddef.h>
+# include <stdio.h>
+# include <stdlib.h>
 # include <sys/types.h>
 # include <sys/uio.h>
 # include <unistd.h>
@@ -40,7 +40,6 @@
 # include "meta_state.h"
 # include "wolf_level_structs.h"
 # include "wolf_structs.h"
-# include "stddef.h"
 
 /*
 ** -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-
@@ -91,11 +90,12 @@ void			wolf_destroy(t_wolf_window *mgr_wolf_window);
 ** file: main_menu.c
 */
 
-int				init_main_menu(t_level_context *level, t_wolf_window *mgr_wolf_window);
-int				level_is_running_main_menu(t_level_context *self);
-t_level_context	*run_level_main_menu(t_level_context *self);
-t_level_context	*get_next_level_main_menu(struct s_level_context *self);
-int				clean_main_menu(t_level_context *self);
+int					level_init_main_menu(t_level_context *level, t_wolf_window *mgr_wolf_window);
+t_level_context	*	level_loop_main_menu(t_level_context *self);
+int					level_running_main_menu(t_level_context *self);
+void				level_get_input_main_menu(t_level_context *self);
+t_level_context	*	level_get_next_main_menu(struct s_level_context *self);
+int					level_clean_main_menu(t_level_context *self);
 
 /*
 ** -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-
@@ -104,11 +104,12 @@ int				clean_main_menu(t_level_context *self);
 
 t_level_context	*first_level(t_wolf_window *mgr_wolf_window);
 
-int				init_first_level(t_level_context *level, t_wolf_window *mgr_wolf_window);
-int				level_is_running_first_level(t_level_context *self);
-t_level_context	*run_level_first_level(t_level_context *self);
-t_level_context	*get_next_level_first_level(struct s_level_context *self);
-int				clean_level_first_level(t_level_context *self);
+int					level_init_first_level(t_level_context *level, t_wolf_window *mgr_wolf_window);
+t_level_context	*	level_loop_first_level(t_level_context *self);
+int					level_running_first_level(t_level_context *self);
+void				level_get_input_first_level(t_level_context *self);
+t_level_context	*	level_get_next_first_level(struct s_level_context *self);
+int					level_clean_first_level(t_level_context *self);
 
 /*
 ** -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-

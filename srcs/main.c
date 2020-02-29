@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 14:31:31 by kmira             #+#    #+#             */
-/*   Updated: 2020/02/27 17:28:08 by kmira            ###   ########.fr       */
+/*   Updated: 2020/02/29 02:53:34 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int		main(void)
 	new_level = NULL;
 	mgr_wolf_window = wolf_initialize();
 	curr_level = malloc(sizeof(t_level_main_menu));
-	curr_level->init_self = init_main_menu;
+	curr_level->init_self = level_init_main_menu;
 	while (game_state() == GAME_STATE_OK && curr_level != NULL)
 	{
 		curr_level->init_self(curr_level, &mgr_wolf_window);

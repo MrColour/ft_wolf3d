@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/28 00:57:39 by kmira             #+#    #+#             */
-/*   Updated: 2020/02/29 00:21:47 by kmira            ###   ########.fr       */
+/*   Updated: 2020/02/29 02:14:02 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,30 +34,24 @@ t_texture	*get_texture(int fd)
 {
 	int				i;
 	int				j;
-	int				width;
-	int				height;
 	unsigned char	channel;
 	t_texture		*result;
-	unsigned char	buffer[14 + 14 + 2 + 1];
+	unsigned char	buffer[12 + 1];
 
-	width = 0;
-	height = 0;
+	result = malloc(sizeof(*result));
 	read(fd, buffer, 1);
 	if (buffer[0] == 'W')
-		width = get_num(fd);
+		result->width = get_num(fd);
 	read(fd, buffer, 1);
 	if (buffer[0] == 'H')
-		height = get_num(fd);
-	result = malloc(sizeof(*result));
-	result->width = width;
-	result->height = height;
-	result->memory_array = malloc(sizeof(*result->memory_array) * (width * height * BPP));
-	i = 0;
-	while (i < width * height)
+		result->height = get_num(fd);
+	result->memory_array = malloc(sizeof(*result->memory_array) * (result->width * result->height * BPP));
+	i = -1;
+	while (++i < result->width * result->height)
 	{
 		read(fd, buffer, 12);
-		j = 0;
-		while (j < 4)
+		j = -1;
+		while (++j < 4)
 		{
 			channel = 0;
 			if (ft_isdigit(buffer[j * 3 + 0]))
@@ -67,14 +61,8 @@ t_texture	*get_texture(int fd)
 			if (ft_isdigit(buffer[j * 3 + 2]))
 				channel += (buffer[j * 3 + 2] - '0') * 1;
 			result->memory_array[i * BPP + j] = channel;
-			j++;
 		}
-		// printf("FIRST col: %hhu, %hhu, %hhu, %hhu\n", 	result->memory_array[i * BPP + 0],
-		// 												result->memory_array[i * BPP + 1],
-		// 												result->memory_array[i * BPP + 2],
-		// 												result->memory_array[i * BPP + 3]);
 		read(fd, buffer, 1);
-		i++;
 	}
 	return (result);
 }

@@ -6,26 +6,20 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/27 17:24:06 by kmira             #+#    #+#             */
-/*   Updated: 2020/02/29 00:45:07 by kmira            ###   ########.fr       */
+/*   Updated: 2020/02/29 03:00:10 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf.h"
 
-void	circle_logic_c(t_vector3i *location, t_vector3i *velocity, int *bounces)
+void	circle_logic_c(t_vector3i *location, t_vector3i *velocity)
 {
 	location->coord.x += velocity->vector[X];
 	location->coord.y += velocity->vector[Y];
 	if (location->coord.x + 50 >= WIN_WIDTH || location->coord.x - 50 <= 0)
-	{
 		velocity->vector[X] *= -1;
-		*bounces = *bounces + 1;
-	}
 	if (location->coord.y + 50 >= WIN_HEIGHT || location->coord.y - 50 <= 0)
-	{
 		velocity->vector[Y] *= -1;
-		*bounces = *bounces + 1;
-	}
 }
 
 void	draw_circle_c(uint8_t **pixel_array, int x_center, int y_center, uint32_t hex_color)
@@ -56,37 +50,54 @@ t_level_context	*first_level(t_wolf_window *mgr_wolf_window)
 
 	self_full = malloc(sizeof(*self_full));
 	ft_bzero(self_full, sizeof(*self_full));
-	self_full->common_level.init_self = init_first_level;
+	self_full->common_level.init_self = level_init_first_level;
 	self_full->common_level.mgr_wolf_window = mgr_wolf_window;
 	result = (t_level_context *)self_full;
 	return (result);
 }
 
-int				init_first_level(t_level_context *level, t_wolf_window *mgr_wolf_window)
+int				level_init_first_level(t_level_context *level, t_wolf_window *mgr_wolf_window)
 {
 	t_level_first	*self_full;
 
-	level->mgr_wolf_window = mgr_wolf_window;
-	level->run_level = run_level_first_level;
-	level->get_next_level = get_next_level_first_level;
-	level->clean_level = clean_level_first_level;
-	level->is_running = level_is_running_first_level;
-
-	level->level_ticks = 0;
-
 	self_full = (t_level_first *)level;
-	self_full->h_game_state = 0;
-	self_full->bounces = 0;
+
+	self_full->common_level.mgr_wolf_window = mgr_wolf_window;
+	self_full->common_level.run_level = level_loop_first_level;
+	self_full->common_level.is_running = level_running_first_level;
+	self_full->common_level.get_input = level_get_input_first_level;
+	self_full->common_level.get_next_level = level_get_next_first_level;
+	self_full->common_level.clean_level = level_clean_first_level;
+
+	self_full->common_level.level_ticks = 0;
 
 	mgr_wolf_window->background_color.col_32bit = 0x777777;
-
-	self_full->test_text = create_texture("resources/con_play_tex");
-	self_full->test_text->pos.coord.x = WIN_WIDTH / 2;
-	self_full->test_text->pos.coord.y = WIN_HEIGHT / 2;
 	return (1);
 }
 
-int				level_is_running_first_level(t_level_context *self)
+void			level_get_input_first_level(t_level_context *self)
+{
+	t_level_first	*level;
+	t_wolf_window	*wolf_window;
+
+	glfwPollEvents();
+	level = (t_level_first *)self;
+	wolf_window = level->common_level.mgr_wolf_window;
+	if (glfwGetKey(wolf_window->window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
+	{
+		glfwSetWindowShouldClose(wolf_window->window, GL_TRUE);
+		game_running(GAME_STATE_SET, SHUTDOWN_GAME);
+		level->h_game_state = 'e';
+	}
+	else if (glfwGetKey(wolf_window->window, GLFW_KEY_SPACE) == GLFW_PRESS && level->h_toggle == 0)
+	{
+		level->h_game_state ^= ' ';
+		level->h_toggle = 1;
+		self->level_ticks = 15;
+	}
+}
+
+int				level_running_first_level(t_level_context *self)
 {
 	int				result;
 	t_level_first	*self_full;
@@ -95,8 +106,6 @@ int				level_is_running_first_level(t_level_context *self)
 	self_full = (t_level_first *)self;
 	if (glfwWindowShouldClose(self->mgr_wolf_window->window))
 		result = 0;
-	else if (self_full->bounces >= 100)
-		result = 0;
 	else if (self_full->h_game_state == 'e')
 		result = 0;
 	else if (self_full->h_game_state == '\007')
@@ -104,7 +113,7 @@ int				level_is_running_first_level(t_level_context *self)
 	return (result);
 }
 
-t_level_context	*run_level_first_level(t_level_context *self)
+t_level_context	*level_loop_first_level(t_level_context *self)
 {
 	t_wolf_window	*mgr_wolf_window;
 	t_level_context	*new_level;
@@ -118,7 +127,6 @@ t_level_context	*run_level_first_level(t_level_context *self)
 	t_vector3i		velocity_2;
 	t_vector3i		location_2;
 
-
 	location_1.vector[X] = WIN_WIDTH / 2; location_1.vector[Y] = WIN_HEIGHT / 2;
 	velocity_1.vector[X] = 5; velocity_1.vector[Y] = 1;
 
@@ -129,19 +137,8 @@ t_level_context	*run_level_first_level(t_level_context *self)
 
 	while (self->is_running(self))
 	{
-		glfwPollEvents();
-		if (glfwGetKey(mgr_wolf_window->window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
-		{
-			glfwSetWindowShouldClose(mgr_wolf_window->window, GL_TRUE);
-			game_running(GAME_STATE_SET, SHUTDOWN_GAME);
-			self_full->h_next_state = 'e';
-		}
-		else if (glfwGetKey(mgr_wolf_window->window, GLFW_KEY_SPACE) == GLFW_PRESS && self_full->h_toggle == 0)
-		{
-			self_full->h_game_state ^= ' ';
-			self_full->h_toggle = 1;
-			self->level_ticks = 15;
-		}
+
+		self->get_input(self);
 
 		if (self_full->h_game_state == ' ')
 		{
@@ -164,10 +161,8 @@ t_level_context	*run_level_first_level(t_level_context *self)
 			}
 		}
 
-		draw_texture(self_full->test_text, mgr_wolf_window);
-
-		circle_logic_c(&location_1, &velocity_1, &self_full->bounces);
-		circle_logic_c(&location_2, &velocity_2, &self_full->bounces);
+		circle_logic_c(&location_1, &velocity_1);
+		circle_logic_c(&location_2, &velocity_2);
 
 		refresh_screen(mgr_wolf_window);
 
@@ -178,13 +173,13 @@ t_level_context	*run_level_first_level(t_level_context *self)
 	return (new_level);
 }
 
-t_level_context	*get_next_level_first_level(struct s_level_context *self)
+t_level_context	*level_get_next_first_level(struct s_level_context *self)
 {
 	(void)self;
 	return (NULL);
 }
 
-int		clean_level_first_level(t_level_context *self)
+int		level_clean_first_level(t_level_context *self)
 {
 	(void)self;
 	return (42);

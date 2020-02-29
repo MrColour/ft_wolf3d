@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/27 17:00:24 by kmira             #+#    #+#             */
-/*   Updated: 2020/02/29 00:47:31 by kmira            ###   ########.fr       */
+/*   Updated: 2020/02/29 02:59:24 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,18 @@
 
 #define CIR_SIZE 50
 
-int		init_main_menu(t_level_context *level, t_wolf_window *mgr_wolf_window)
+int		level_init_main_menu(t_level_context *level, t_wolf_window *mgr_wolf_window)
 {
 	t_level_main_menu	*self_full;
 
-	level->mgr_wolf_window = mgr_wolf_window;
-	level->run_level = run_level_main_menu;
-	level->get_next_level = get_next_level_main_menu;
-	level->clean_level = clean_main_menu;
-	level->is_running = level_is_running_main_menu;
-
 	self_full = (t_level_main_menu *)level;
+
+	self_full->common_level.mgr_wolf_window = mgr_wolf_window;
+	self_full->common_level.run_level = level_loop_main_menu;
+	self_full->common_level.is_running = level_running_main_menu;
+	self_full->common_level.get_input = level_get_input_main_menu;
+	self_full->common_level.get_next_level = level_get_next_main_menu;
+	self_full->common_level.clean_level = level_clean_main_menu;
 
 	self_full->h_menu_index = 0;
 
@@ -37,7 +38,7 @@ int		init_main_menu(t_level_context *level, t_wolf_window *mgr_wolf_window)
 	return (1);
 }
 
-int		level_is_running_main_menu(t_level_context *self)
+int		level_running_main_menu(t_level_context *self)
 {
 	int					result;
 	t_level_main_menu	*self_full;
@@ -53,7 +54,36 @@ int		level_is_running_main_menu(t_level_context *self)
 	return (result);
 }
 
-t_level_context	*run_level_main_menu(t_level_context *self)
+void			level_get_input_main_menu(t_level_context *self)
+{
+	t_level_main_menu	*level;
+	t_wolf_window		*wolf_window;
+
+	glfwPollEvents();
+	level = (t_level_main_menu *)self;
+	wolf_window = level->common_level.mgr_wolf_window;
+	if (glfwGetKey(wolf_window->window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
+	{
+		glfwSetWindowShouldClose(wolf_window->window, GL_TRUE);
+		game_running(GAME_STATE_SET, SHUTDOWN_GAME);
+		level->h_game_state = 'e';
+	}
+	else if (glfwGetKey(wolf_window->window, GLFW_KEY_SPACE) == GLFW_PRESS ||
+			glfwGetKey(wolf_window->window, GLFW_KEY_ENTER) == GLFW_PRESS)
+		level->h_game_state = ' ';
+	else if (glfwGetKey(wolf_window->window, GLFW_KEY_DOWN) == GLFW_PRESS)
+	{
+		if (level->h_menu_index < 1)
+			level->h_menu_index++;
+	}
+	else if (glfwGetKey(wolf_window->window, GLFW_KEY_UP) == GLFW_PRESS)
+	{
+		if (level->h_menu_index > 0)
+			level->h_menu_index--;
+	}
+}
+
+t_level_context	*level_loop_main_menu(t_level_context *self)
 {
 	t_wolf_window		*mgr_wolf_window;
 	t_level_context		*new_level;
@@ -64,26 +94,9 @@ t_level_context	*run_level_main_menu(t_level_context *self)
 
 	while (self->is_running(self))
 	{
-		glfwPollEvents();
-		if (glfwGetKey(mgr_wolf_window->window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
-		{
-			glfwSetWindowShouldClose(mgr_wolf_window->window, GL_TRUE);
-			game_running(GAME_STATE_SET, SHUTDOWN_GAME);
-			self_full->h_next_state = 'e';
-		}
-		else if (glfwGetKey(mgr_wolf_window->window, GLFW_KEY_SPACE) == GLFW_PRESS ||
-				 glfwGetKey(mgr_wolf_window->window, GLFW_KEY_ENTER) == GLFW_PRESS)
-					self_full->h_game_state = ' ';
-		else if (glfwGetKey(mgr_wolf_window->window, GLFW_KEY_DOWN) == GLFW_PRESS)
-		{
-			if (self_full->h_menu_index < 1)
-				self_full->h_menu_index++;
-		}
-		else if (glfwGetKey(mgr_wolf_window->window, GLFW_KEY_UP) == GLFW_PRESS)
-		{
-			if (self_full->h_menu_index > 0)
-				self_full->h_menu_index--;
-		}
+
+		self->get_input(self);
+
 		change_animation(&self_full->animation_array[0], self);
 		draw_texture(self_full->animation_array[0]->texture, mgr_wolf_window);
 
@@ -100,12 +113,12 @@ t_level_context	*run_level_main_menu(t_level_context *self)
 	return (new_level);
 }
 
-t_level_context	*get_next_level_main_menu(struct s_level_context *self)
+t_level_context	*level_get_next_main_menu(struct s_level_context *self)
 {
 	t_level_main_menu *self_full;
 
 	self_full = (t_level_main_menu *)self;
-	if (self_full->h_next_state == 'e')
+	if (self_full->h_game_state == 'e')
 		return (NULL);
 	else if (self_full->h_game_state >= ' ' && self_full->h_menu_index == 0)
 		return (first_level(self->mgr_wolf_window));
@@ -115,7 +128,7 @@ t_level_context	*get_next_level_main_menu(struct s_level_context *self)
 		return (NULL);
 }
 
-int		clean_main_menu(t_level_context *self)
+int		level_clean_main_menu(t_level_context *self)
 {
 	(void)self;
 	return (42);

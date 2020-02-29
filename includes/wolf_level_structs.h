@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/27 03:56:22 by kmira             #+#    #+#             */
-/*   Updated: 2020/02/29 00:46:37 by kmira            ###   ########.fr       */
+/*   Updated: 2020/02/29 02:47:38 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,11 @@ typedef struct	s_level_context
 	int						(*init_self)(struct s_level_context *level, t_wolf_window *mgr_wolf_window);
 	struct s_level_context	*(*run_level)(struct s_level_context *self);
 	int						(*is_running)(struct s_level_context *self);
+	void					(*get_input)(struct s_level_context *self);
 	struct s_level_context	*(*get_next_level)(struct s_level_context *self);
 	int						(*clean_level)(struct s_level_context *self);
 
 	int						level_ticks;
-	int						level_state;
 }				t_level_context;
 
 typedef struct	s_level_main_menu
@@ -36,7 +36,6 @@ typedef struct	s_level_main_menu
 	t_animation				*(*animation_array);
 
 	int						h_game_state;
-	int						h_next_state;
 
 	int						h_menu_index;
 
@@ -46,12 +45,9 @@ typedef struct	s_level_first
 {
 	t_level_context			common_level;
 
-	int						h_next_state;
 	int						h_game_state;
-	int						bounces;
 
 	int						h_toggle;
-	t_texture				*test_text;
 }				t_level_first;
 
 #endif

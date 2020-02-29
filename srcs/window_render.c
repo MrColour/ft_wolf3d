@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/27 01:19:10 by kmira             #+#    #+#             */
-/*   Updated: 2020/02/28 00:24:15 by kmira            ###   ########.fr       */
+/*   Updated: 2020/02/29 02:21:18 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,5 +76,5 @@ void		refresh_screen(t_wolf_window *mgr_wolf_window)
 	glfwSwapBuffers(mgr_wolf_window->window);
 	clear_pixel_array(mgr_wolf_window->pixel_array);
 	fill_with_background(mgr_wolf_window->pixel_array,
-						mgr_wolf_window->background_color);
+							mgr_wolf_window->background_color);
 }
