@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 17:58:30 by kmira             #+#    #+#             */
-/*   Updated: 2020/02/29 03:02:26 by kmira            ###   ########.fr       */
+/*   Updated: 2020/03/01 13:16:30 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,10 +119,12 @@ int					level_clean_first_level(t_level_context *self);
 t_texture	*create_texture(char *file_path);
 
 void		draw_texture(t_texture *texture, t_wolf_window *mgr_wolf_window);
+void		draw_transform_texture(t_texture *texture, t_wolf_window *mgr_wolf_window, t_matrix3i *transform);
 
 t_animation	*play_button_animation(void);
 t_animation	*quit_button_animation(void);
 t_animation	*tittle_animation(void);
+t_animation	*wall_animation(void);
 
 /*
 ** -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-
@@ -131,5 +133,8 @@ t_animation	*tittle_animation(void);
 
 void	fill_shared_lock(t_animation *animation, int *shared_lock);
 void	change_animation(t_animation **addr, t_level_context *level);
+
+
+void	draw_wall_test(t_texture *texture, t_wolf_window *mgr_wolf_window);
 
 #endif

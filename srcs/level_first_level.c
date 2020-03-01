@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/27 17:24:06 by kmira             #+#    #+#             */
-/*   Updated: 2020/02/29 03:00:10 by kmira            ###   ########.fr       */
+/*   Updated: 2020/03/01 13:16:57 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,10 @@ t_level_context	*first_level(t_wolf_window *mgr_wolf_window)
 	ft_bzero(self_full, sizeof(*self_full));
 	self_full->common_level.init_self = level_init_first_level;
 	self_full->common_level.mgr_wolf_window = mgr_wolf_window;
+
+	self_full->animation_array = malloc(sizeof(*self_full->animation_array) * (1 + 1));
+	self_full->animation_array[0] = wall_animation();
+
 	result = (t_level_context *)self_full;
 	return (result);
 }
@@ -163,6 +167,9 @@ t_level_context	*level_loop_first_level(t_level_context *self)
 
 		circle_logic_c(&location_1, &velocity_1);
 		circle_logic_c(&location_2, &velocity_2);
+
+		// draw_texture(self_full->animation_array[0]->texture, mgr_wolf_window);
+		draw_wall_test(self_full->animation_array[0]->texture, mgr_wolf_window);
 
 		refresh_screen(mgr_wolf_window);
 

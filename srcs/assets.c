@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/28 00:57:39 by kmira             #+#    #+#             */
-/*   Updated: 2020/02/29 02:14:02 by kmira            ###   ########.fr       */
+/*   Updated: 2020/03/01 15:13:41 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ t_texture	*get_texture(int fd)
 				channel += (buffer[j * 3 + 1] - '0') * 10;
 			if (ft_isdigit(buffer[j * 3 + 2]))
 				channel += (buffer[j * 3 + 2] - '0') * 1;
+
 			result->memory_array[i * BPP + j] = channel;
 		}
 		read(fd, buffer, 1);

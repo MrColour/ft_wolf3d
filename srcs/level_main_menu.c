@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/27 17:00:24 by kmira             #+#    #+#             */
-/*   Updated: 2020/02/29 02:59:24 by kmira            ###   ########.fr       */
+/*   Updated: 2020/03/01 13:10:54 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int		level_init_main_menu(t_level_context *level, t_wolf_window *mgr_wolf_window
 
 	self_full->h_menu_index = 0;
 
-	self_full->animation_array = malloc(sizeof(*self_full->animation_array) * 4);
+	self_full->animation_array = malloc(sizeof(*self_full->animation_array) * (3 + 1));
 	self_full->animation_array[0] = tittle_animation();
 	self_full->animation_array[1] = play_button_animation();
 	self_full->animation_array[2] = quit_button_animation();

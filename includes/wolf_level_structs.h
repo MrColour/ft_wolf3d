@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/27 03:56:22 by kmira             #+#    #+#             */
-/*   Updated: 2020/02/29 02:47:38 by kmira            ###   ########.fr       */
+/*   Updated: 2020/03/01 13:10:16 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ typedef struct	s_level_main_menu
 typedef struct	s_level_first
 {
 	t_level_context			common_level;
+
+	t_animation				*(*animation_array);
 
 	int						h_game_state;
 

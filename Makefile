@@ -6,7 +6,7 @@
 #    By: kmira <kmira@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/25 11:13:19 by kmira             #+#    #+#              #
-#    Updated: 2020/02/29 00:37:34 by kmira            ###   ########.fr        #
+#    Updated: 2020/03/01 13:14:18 by kmira            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,6 +29,7 @@ FILES = \
 	assets \
 	assets_play_button \
 	assets_tittle \
+	assets_wall \
 	initialization \
 	level_first_level \
 	level_main_menu \
