@@ -6,7 +6,7 @@
 #    By: kmira <kmira@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/25 11:13:19 by kmira             #+#    #+#              #
-#    Updated: 2020/03/01 13:14:18 by kmira            ###   ########.fr        #
+#    Updated: 2020/03/01 16:17:49 by kmira            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -60,7 +60,7 @@ fclean: clean
 
 re: fclean all
 
-save: fclean
+save: clean
 	git add .
 	git commit -m "$(MSG)"
 	git push
