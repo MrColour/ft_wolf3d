@@ -6,7 +6,7 @@
 #    By: kmira <kmira@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/25 11:13:19 by kmira             #+#    #+#              #
-#    Updated: 2020/03/01 16:17:49 by kmira            ###   ########.fr        #
+#    Updated: 2020/03/01 17:330:58 by kmira            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,6 +28,7 @@ FILES = \
 	animations \
 	assets \
 	assets_play_button \
+	assets_player \
 	assets_tittle \
 	assets_wall \
 	initialization \
@@ -70,3 +71,4 @@ quick: re
 
 play: quick
 	./$(NAME)
+

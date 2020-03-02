@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/27 03:56:22 by kmira             #+#    #+#             */
-/*   Updated: 2020/03/01 13:10:16 by kmira            ###   ########.fr       */
+/*   Updated: 2020/03/01 17:27:08 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ typedef struct	s_level_first
 	int						h_game_state;
 
 	int						h_toggle;
+
+	t_player				player;
 }				t_level_first;
 
 #endif

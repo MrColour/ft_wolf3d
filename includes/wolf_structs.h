@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 17:57:44 by kmira             #+#    #+#             */
-/*   Updated: 2020/03/01 13:08:17 by kmira            ###   ########.fr       */
+/*   Updated: 2020/03/01 17:23:19 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,20 +57,20 @@ typedef union	u_vector3i
 
 typedef union	u_matrix_3i
 {
-	int			matrix[3][3];
-	t_vector3i	vectors[3];
-	struct
-	{
-		int		xx;
-		int		xy;
-		int		xz;
-		int		yx;
-		int		yy;
-		int		yz;
-		int		zx;
-		int		zy;
-		int		zz;
-	}			scalars;
+	double		matrix[3][3];
+	// t_vector3i	vectors[3];
+	// struct
+	// {
+	// 	int		xx;
+	// 	int		xy;
+	// 	int		xz;
+	// 	int		yx;
+	// 	int		yy;
+	// 	int		yz;
+	// 	int		zx;
+	// 	int		zy;
+	// 	int		zz;
+	// }			scalars;
 }				t_matrix3i;
 
 typedef struct	s_texture
@@ -79,6 +79,8 @@ typedef struct	s_texture
 	int			width;
 	int			height;
 	t_vector3i	pos;
+	t_vector3i	draw;
+	t_matrix3i	transform;
 }				t_texture;
 
 typedef struct	s_animation
@@ -100,5 +102,21 @@ typedef	struct	s_wolf_window
 
 	t_color		background_color;
 }				t_wolf_window;
+
+typedef struct s_map
+{
+	char		**map;
+	int			width;
+	int 		height;
+}				t_map;
+
+typedef struct	s_player
+{
+	int			posx;
+	int			posy;
+
+	float		viewangle;
+	float		rotation;
+}				t_player;
 
 #endif

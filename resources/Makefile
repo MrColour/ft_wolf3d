@@ -6,13 +6,14 @@
 #    By: kmira <kmira@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/28 21:32:32 by kmira             #+#    #+#              #
-#    Updated: 2020/03/01 12:27:53 by kmira            ###   ########.fr        #
+#    Updated: 2020/03/01 17:12:28 by kmira            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 FILE_NAMES = \
 		play_active \
 		play_deactive \
+		player \
 		quit_active \
 		quit_deactive \
 		tittle \

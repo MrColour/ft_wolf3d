@@ -6,42 +6,11 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/27 17:24:06 by kmira             #+#    #+#             */
-/*   Updated: 2020/03/01 13:16:57 by kmira            ###   ########.fr       */
+/*   Updated: 2020/03/01 17:37:110 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf.h"
-
-void	circle_logic_c(t_vector3i *location, t_vector3i *velocity)
-{
-	location->coord.x += velocity->vector[X];
-	location->coord.y += velocity->vector[Y];
-	if (location->coord.x + 50 >= WIN_WIDTH || location->coord.x - 50 <= 0)
-		velocity->vector[X] *= -1;
-	if (location->coord.y + 50 >= WIN_HEIGHT || location->coord.y - 50 <= 0)
-		velocity->vector[Y] *= -1;
-}
-
-void	draw_circle_c(uint8_t **pixel_array, int x_center, int y_center, uint32_t hex_color)
-{
-	int		x;
-	int		y;
-	float	i;
-	int		j;
-	t_color	color;
-
-	j = 0;
-	i = 0;
-	color.col_32bit = hex_color;
-	while (i < (M_PI * 2))
-	{
-		x = (int)50 * cos(i) + x_center;
-		y = (int)50 * sin(i) + y_center;
-		push_pixel(x, y, color, pixel_array);
-		i += 0.001;
-		j++;
-	}
-}
 
 t_level_context	*first_level(t_wolf_window *mgr_wolf_window)
 {
@@ -53,8 +22,15 @@ t_level_context	*first_level(t_wolf_window *mgr_wolf_window)
 	self_full->common_level.init_self = level_init_first_level;
 	self_full->common_level.mgr_wolf_window = mgr_wolf_window;
 
-	self_full->animation_array = malloc(sizeof(*self_full->animation_array) * (1 + 1));
+	self_full->animation_array = malloc(sizeof(*self_full->animation_array) * (3 + 1));
 	self_full->animation_array[0] = wall_animation();
+	self_full->animation_array[1] = wall_animation();
+
+	self_full->animation_array[1]->texture->draw.coord.x += self_full->animation_array[1]->texture->width;
+	self_full->animation_array[2] = player_animation();
+	self_full->animation_array[3] = NULL;
+
+	// self_full->player
 
 	result = (t_level_context *)self_full;
 	return (result);
@@ -97,6 +73,18 @@ void			level_get_input_first_level(t_level_context *self)
 	{
 		level->h_game_state ^= ' ';
 		level->h_toggle = 1;
+		self->level_ticks = 15;
+	}
+	else if (glfwGetKey(wolf_window->window, GLFW_KEY_D) == GLFW_PRESS && level->h_toggle == 0)
+	{
+		level->h_toggle = 1;
+		level->player.posx += 20;
+		self->level_ticks = 15;
+	}
+	else if (glfwGetKey(wolf_window->window, GLFW_KEY_A) == GLFW_PRESS && level->h_toggle == 0)
+	{
+		level->h_toggle = 1;
+		level->player.posx -= 20;
 		self->level_ticks = 15;
 	}
 }
@@ -144,32 +132,19 @@ t_level_context	*level_loop_first_level(t_level_context *self)
 
 		self->get_input(self);
 
-		if (self_full->h_game_state == ' ')
+		if (self_full->h_toggle == 1 && self->level_ticks % 25 == 0)
 		{
-			draw_circle_c(mgr_wolf_window->pixel_array, location_1.coord.x, location_1.coord.y, 0xFFFFFF);
-			draw_circle_c(mgr_wolf_window->pixel_array, location_2.coord.x, location_2.coord.y, 0xFFFFFF);
-			if (self->level_ticks % 25 == 0)
-			{
 				self_full->h_toggle = 0;
 				self->level_ticks = 0;
-			}
-		}
-		else
-		{
-			draw_circle_c(mgr_wolf_window->pixel_array, location_1.coord.x, location_1.coord.y, 0xfe346e);
-			draw_circle_c(mgr_wolf_window->pixel_array, location_2.coord.x, location_2.coord.y, 0xe8f044);
-			if (self->level_ticks % 25 == 0)
-			{
-				self_full->h_toggle = 0;
-				self->level_ticks = 0;
-			}
 		}
 
-		circle_logic_c(&location_1, &velocity_1);
-		circle_logic_c(&location_2, &velocity_2);
+		change_animation(&self_full->animation_array[0], self);
+		change_animation(&self_full->animation_array[1], self);
 
-		// draw_texture(self_full->animation_array[0]->texture, mgr_wolf_window);
 		draw_wall_test(self_full->animation_array[0]->texture, mgr_wolf_window);
+		draw_wall_test_1(self_full->animation_array[1]->texture, mgr_wolf_window);
+
+		draw_texture(self_full->animation_array[2]->texture, mgr_wolf_window);
 
 		refresh_screen(mgr_wolf_window);
 

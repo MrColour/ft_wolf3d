@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 17:58:30 by kmira             #+#    #+#             */
-/*   Updated: 2020/03/01 13:16:30 by kmira            ###   ########.fr       */
+/*   Updated: 2020/03/01 17:30:45 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,10 @@
 # define GREEN_CHANNEL 1
 # define BLUE_CHANNEL 0
 # define ALPHA_CHANNEL 3
+
+# define PLAYER_CHAR 'X'
+# define ENEMY_CHAR '0'
+# define WALL_CHAR 'W'
 
 /*
 ** -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-
@@ -125,6 +129,7 @@ t_animation	*play_button_animation(void);
 t_animation	*quit_button_animation(void);
 t_animation	*tittle_animation(void);
 t_animation	*wall_animation(void);
+t_animation	*player_animation(void);
 
 /*
 ** -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-
@@ -136,5 +141,6 @@ void	change_animation(t_animation **addr, t_level_context *level);
 
 
 void	draw_wall_test(t_texture *texture, t_wolf_window *mgr_wolf_window);
+void	draw_wall_test_1(t_texture *texture, t_wolf_window *mgr_wolf_window);
 
 #endif
