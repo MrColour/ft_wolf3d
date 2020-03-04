@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 17:45:33 by kmira             #+#    #+#             */
-/*   Updated: 2020/03/04 01:26:31 by kmira            ###   ########.fr       */
+/*   Updated: 2020/03/04 01:32:11 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ t_level_context	*first_level(t_wolf_window *mgr_wolf_window)
 	// self_full->animation_array[1]->texture->draw.coord.x += self_full->animation_array[1]->texture->width;
 	// self_full->animation_array[2]->texture->draw.coord.x -= self_full->animation_array[2]->texture->width / 2;
 
-	self_full->animation_array[1]->texture->world_pos.coord.z = 500;
-	self_full->animation_array[2]->texture->world_pos.coord.z = self_full->animation_array[1]->texture->width * 4;
+	self_full->animation_array[1]->texture->world_pos.coord.z = 50;
+	self_full->animation_array[2]->texture->world_pos.coord.z = 100;
 
 	self_full->animation_array[3] = player_animation();
 	self_full->animation_array[4] = NULL;

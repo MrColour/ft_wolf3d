@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/03/01 12:28:28 by kmira             #+#    #+#             */
-/*   Updated: 2020/03/01 17:25:221 by kmira            ###   ########.fr       */
+/*   Created: 2020/03/04 01:30:01 by kmira             #+#    #+#             */
+/*   Updated: 2020/03/04 01:30:03 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,9 +65,6 @@ t_animation	*wall_animation(void)
 	wall->texture = create_texture("resources/ft_png_files/wall.ft_png");
 
 	offset = wall->texture->width / 2;
-
-	wall->texture->screen_pos.coord.x = WIN_WIDTH / 2 - offset;
-	wall->texture->screen_pos.coord.y = WIN_HEIGHT / 2 - 150;
 
 	wall->texture->world_pos.coord.x = WIN_WIDTH / 2 - offset;
 	wall->texture->world_pos.coord.y = WIN_HEIGHT / 2 - 150;
