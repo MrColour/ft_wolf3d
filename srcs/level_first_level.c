@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/27 17:24:06 by kmira             #+#    #+#             */
-/*   Updated: 2020/03/01 17:37:110 by kmira            ###   ########.fr       */
+/*   Created: 2020/03/02 17:45:33 by kmira             #+#    #+#             */
+/*   Updated: 2020/03/04 01:26:31 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,19 @@ t_level_context	*first_level(t_wolf_window *mgr_wolf_window)
 	self_full->common_level.init_self = level_init_first_level;
 	self_full->common_level.mgr_wolf_window = mgr_wolf_window;
 
-	self_full->animation_array = malloc(sizeof(*self_full->animation_array) * (3 + 1));
+	self_full->animation_array = malloc(sizeof(*self_full->animation_array) * (4 + 1));
 	self_full->animation_array[0] = wall_animation();
 	self_full->animation_array[1] = wall_animation();
+	self_full->animation_array[2] = wall_animation();
 
-	self_full->animation_array[1]->texture->draw.coord.x += self_full->animation_array[1]->texture->width;
-	self_full->animation_array[2] = player_animation();
-	self_full->animation_array[3] = NULL;
+	// self_full->animation_array[1]->texture->draw.coord.x += self_full->animation_array[1]->texture->width;
+	// self_full->animation_array[2]->texture->draw.coord.x -= self_full->animation_array[2]->texture->width / 2;
+
+	self_full->animation_array[1]->texture->world_pos.coord.z = 500;
+	self_full->animation_array[2]->texture->world_pos.coord.z = self_full->animation_array[1]->texture->width * 4;
+
+	self_full->animation_array[3] = player_animation();
+	self_full->animation_array[4] = NULL;
 
 	// self_full->player
 
@@ -78,13 +84,13 @@ void			level_get_input_first_level(t_level_context *self)
 	else if (glfwGetKey(wolf_window->window, GLFW_KEY_D) == GLFW_PRESS && level->h_toggle == 0)
 	{
 		level->h_toggle = 1;
-		level->player.posx += 20;
+		level->player.posx += 40;
 		self->level_ticks = 15;
 	}
 	else if (glfwGetKey(wolf_window->window, GLFW_KEY_A) == GLFW_PRESS && level->h_toggle == 0)
 	{
 		level->h_toggle = 1;
-		level->player.posx -= 20;
+		level->player.posx -= 40;
 		self->level_ticks = 15;
 	}
 }
@@ -129,22 +135,25 @@ t_level_context	*level_loop_first_level(t_level_context *self)
 
 	while (self->is_running(self))
 	{
-
 		self->get_input(self);
 
 		if (self_full->h_toggle == 1 && self->level_ticks % 25 == 0)
 		{
-				self_full->h_toggle = 0;
-				self->level_ticks = 0;
+			self_full->h_toggle = 0;
+			self->level_ticks = 0;
 		}
 
-		change_animation(&self_full->animation_array[0], self);
-		change_animation(&self_full->animation_array[1], self);
+		// change_animation(&self_full->animation_array[0], self);
+		// change_animation(&self_full->animation_array[1], self);
+		// change_animation(&self_full->animation_array[2], self);
 
-		draw_wall_test(self_full->animation_array[0]->texture, mgr_wolf_window);
+		// draw_wall_test(self_full->animation_array[0]->texture, mgr_wolf_window);
 		draw_wall_test_1(self_full->animation_array[1]->texture, mgr_wolf_window);
+		draw_wall_test_2(self_full->animation_array[2]->texture, mgr_wolf_window);
 
-		draw_texture(self_full->animation_array[2]->texture, mgr_wolf_window);
+		// draw_texture(self_full->animation_array[0]->texture, mgr_wolf_window);
+		// draw_texture(self_full->animation_array[1]->texture, mgr_wolf_window);
+		// draw_texture(self_full->animation_array[2]->texture, mgr_wolf_window);
 
 		refresh_screen(mgr_wolf_window);
 

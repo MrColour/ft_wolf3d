@@ -20,8 +20,11 @@ outfile.write("H" + str(y) + "\n")
 
 for i in range(x):
 	for j in range(y):
-		b = pix[i, j][0]
+		r = pix[i, j][0]
 		g = pix[i, j][1]
-		r = pix[i, j][2]
+		b = pix[i, j][2]
+
+		# r = pix[i, j][3]
+		# g = 0
 		a = pix[i, j][3]
-		outfile.write("{:3d}{:3d}{:3d}{:3d}".format(r, g, b, a) + '\n')
+		outfile.write("{:3d}{:3d}{:3d}{:3d}".format(a, r, g, b) + '\n')

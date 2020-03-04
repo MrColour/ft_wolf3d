@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 17:58:30 by kmira             #+#    #+#             */
-/*   Updated: 2020/03/01 17:30:45 by kmira            ###   ########.fr       */
+/*   Updated: 2020/03/03 01:30:55 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,5 +142,6 @@ void	change_animation(t_animation **addr, t_level_context *level);
 
 void	draw_wall_test(t_texture *texture, t_wolf_window *mgr_wolf_window);
 void	draw_wall_test_1(t_texture *texture, t_wolf_window *mgr_wolf_window);
+void	draw_wall_test_2(t_texture *texture, t_wolf_window *mgr_wolf_window);
 
 #endif

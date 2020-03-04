@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 17:57:44 by kmira             #+#    #+#             */
-/*   Updated: 2020/03/01 17:23:19 by kmira            ###   ########.fr       */
+/*   Updated: 2020/03/04 01:24:55 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,8 +78,8 @@ typedef struct	s_texture
 	uint8_t		*memory_array;
 	int			width;
 	int			height;
-	t_vector3i	pos;
-	t_vector3i	draw;
+	t_vector3i	world_pos;
+	t_vector3i	screen_pos;
 	t_matrix3i	transform;
 }				t_texture;
 

@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/28 23:19:34 by kmira             #+#    #+#             */
-/*   Updated: 2020/02/29 03:14:29 by kmira            ###   ########.fr       */
+/*   Updated: 2020/03/04 01:28:12 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,14 +40,14 @@ t_animation	*play_button_animation(void)
 
 	offset = deactive_button->texture->width / 2;
 
-	deactive_button->texture->pos.coord.x = WIN_WIDTH / 2 - offset;
-	deactive_button->texture->pos.coord.y = WIN_HEIGHT / 2;
+	deactive_button->texture->world_pos.coord.x = WIN_WIDTH / 2 - offset;
+	deactive_button->texture->world_pos.coord.y = WIN_HEIGHT / 2;
 	deactive_button->update_sprite = play_button_update;
 
 	active_button = malloc(sizeof(*active_button));
 	active_button->texture = create_texture("resources/ft_png_files/play_active.ft_png");
-	active_button->texture->pos.coord.x = WIN_WIDTH / 2 - offset;
-	active_button->texture->pos.coord.y = WIN_HEIGHT / 2;
+	active_button->texture->world_pos.coord.x = WIN_WIDTH / 2 - offset;
+	active_button->texture->world_pos.coord.y = WIN_HEIGHT / 2;
 	active_button->update_sprite = play_button_update;
 
 	deactive_button->next = active_button;
@@ -84,14 +84,14 @@ t_animation	*quit_button_animation(void)
 
 	offset = deactive_button->texture->width / 2;
 
-	deactive_button->texture->pos.coord.x = WIN_WIDTH / 2 - offset;
-	deactive_button->texture->pos.coord.y = WIN_HEIGHT / 2 + 100;
+	deactive_button->texture->world_pos.coord.x = WIN_WIDTH / 2 - offset;
+	deactive_button->texture->world_pos.coord.y = WIN_HEIGHT / 2 + 100;
 	deactive_button->update_sprite = quit_button_update;
 
 	active_button = malloc(sizeof(*active_button));
 	active_button->texture = create_texture("resources/ft_png_files/quit_active.ft_png");
-	active_button->texture->pos.coord.x = WIN_WIDTH / 2 - offset;
-	active_button->texture->pos.coord.y = WIN_HEIGHT / 2 + 100;
+	active_button->texture->world_pos.coord.x = WIN_WIDTH / 2 - offset;
+	active_button->texture->world_pos.coord.y = WIN_HEIGHT / 2 + 100;
 	active_button->update_sprite = quit_button_update;
 
 	deactive_button->next = active_button;

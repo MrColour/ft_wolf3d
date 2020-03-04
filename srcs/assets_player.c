@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/29 00:33:59 by kmira             #+#    #+#             */
-/*   Updated: 2020/03/01 17:30:20 by kmira            ###   ########.fr       */
+/*   Updated: 2020/03/04 01:28:21 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ t_animation	*player_animation(void)
 
 	offset = tittle->texture->width / 2;
 
-	tittle->texture->pos.coord.x = WIN_WIDTH / 2 - offset;
-	tittle->texture->pos.coord.y = WIN_HEIGHT / 2 - 150;
+	tittle->texture->world_pos.coord.x = WIN_WIDTH / 2 - offset;
+	tittle->texture->world_pos.coord.y = WIN_HEIGHT / 2 - 150;
 	tittle->update_sprite = player_update;
 
 	tittle->next = tittle;

@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/28 00:57:39 by kmira             #+#    #+#             */
-/*   Updated: 2020/03/01 15:13:41 by kmira            ###   ########.fr       */
+/*   Updated: 2020/03/02 17:13:24 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,21 @@ int			get_num(int fd)
 	return (result);
 }
 
+/*
+** The python script that makes ft_png has the x and the y reversed
+** Because of this the wierd modulo and multiplication math has to be
+** done so that the pixel data of the texture is in the correct place.
+** This is the row:
+** 	(i % result->height) * result->width
+** This is the col:
+** 		( i / result->height)
+*/
+
 t_texture	*get_texture(int fd)
 {
 	int				i;
 	int				j;
-	unsigned char	channel;
+	uint32_t		color;
 	t_texture		*result;
 	unsigned char	buffer[12 + 1];
 
@@ -51,18 +61,18 @@ t_texture	*get_texture(int fd)
 	{
 		read(fd, buffer, 12);
 		j = -1;
+		color = 0;
 		while (++j < 4)
 		{
-			channel = 0;
+			color = color << 8;
 			if (ft_isdigit(buffer[j * 3 + 0]))
-				channel += (buffer[j * 3 + 0] - '0') * 100;
+				color += (buffer[j * 3 + 0] - '0') * 100;
 			if (ft_isdigit(buffer[j * 3 + 1]))
-				channel += (buffer[j * 3 + 1] - '0') * 10;
+				color += (buffer[j * 3 + 1] - '0') * 10;
 			if (ft_isdigit(buffer[j * 3 + 2]))
-				channel += (buffer[j * 3 + 2] - '0') * 1;
-
-			result->memory_array[i * BPP + j] = channel;
+				color += (buffer[j * 3 + 2] - '0') * 1;
 		}
+		*(uint32_t *)(&result->memory_array[ ( ((i % result->height) * result->width) + (( i / result->height)) ) * BPP]) = color;
 		read(fd, buffer, 1);
 	}
 	return (result);

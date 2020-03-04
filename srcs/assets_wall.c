@@ -19,8 +19,10 @@ int			wall_update(t_animation *self, t_level_context *level)
 
 	real_level = (t_level_first	*)level;
 
-	self->texture->pos.coord.x = self->texture->draw.coord.x + real_level->player.posx;
-	self->texture->pos.coord.y = self->texture->draw.coord.y + real_level->player.posy;
+	self->texture->screen_pos.coord.x = self->texture->world_pos.coord.x + real_level->player.posx;
+	self->texture->screen_pos.coord.y = self->texture->world_pos.coord.y + real_level->player.posy;
+
+	self->texture->transform.matrix[0][1] -= .001;
 
 	result = 0;
 	(void)self;
@@ -56,24 +58,24 @@ void		wall_transform2_matrix(void)
 
 t_animation	*wall_animation(void)
 {
-	t_animation *tittle;
+	t_animation *wall;
 	int			offset;
 
-	tittle = malloc(sizeof(*tittle));
-	tittle->texture = create_texture("resources/ft_png_files/wall.ft_png");
+	wall = malloc(sizeof(*wall));
+	wall->texture = create_texture("resources/ft_png_files/wall.ft_png");
 
-	offset = tittle->texture->width / 2;
+	offset = wall->texture->width / 2;
 
-	tittle->texture->pos.coord.x = WIN_WIDTH / 2 - offset;
-	tittle->texture->pos.coord.y = WIN_HEIGHT / 2 - 150;
+	wall->texture->screen_pos.coord.x = WIN_WIDTH / 2 - offset;
+	wall->texture->screen_pos.coord.y = WIN_HEIGHT / 2 - 150;
 
-	tittle->texture->draw.coord.x = WIN_WIDTH / 2 - offset;
-	tittle->texture->draw.coord.y = WIN_HEIGHT / 2 - 150;
+	wall->texture->world_pos.coord.x = WIN_WIDTH / 2 - offset;
+	wall->texture->world_pos.coord.y = WIN_HEIGHT / 2 - 150;
 
-	tittle->update_sprite = wall_update;
+	wall->update_sprite = wall_update;
 
-	tittle->next = tittle;
+	wall->next = wall;
 
-	return (tittle);
+	return (wall);
 }
 
