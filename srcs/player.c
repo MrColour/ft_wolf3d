@@ -6,12 +6,37 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/01 17:08:12 by marvin            #+#    #+#             */
-/*   Updated: 2020/03/04 22:56:52 by kmira            ###   ########.fr       */
+/*   Updated: 2020/03/05 00:18:02 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf_structs.h"
 #include "wolf.h"
+
+void	update_player(t_level_context *context, t_player *player)
+{
+	t_level_first	*level;
+	char			**map;
+	int				pos_x;
+	int				pos_y;
+
+	level = (t_level_first *)context;
+	map = level->map;
+
+	pos_x = player->posx;
+	pos_y = player->posy;
+	if (level->h_game_state == MOVE_UP && map[pos_y - 1][pos_x] != 'W')
+		player->posy--;
+	else if (level->h_game_state == MOVE_DOWN && map[pos_y + 1][pos_x] != 'W')
+		player->posy++;
+	else if (level->h_game_state == MOVE_RIGHT && map[pos_y][pos_x - 1] != 'W')
+		player->posx--;
+	else if (level->h_game_state == MOVE_LEFT && map[pos_y][pos_x + 1] != 'W')
+		player->posx++;
+
+	map[pos_y][pos_x] = ' ';
+	map[player->posy][player->posx] = PLAYER_CHAR;
+}
 
 void	get_player_position(t_player *player, char **map)
 {
@@ -33,8 +58,8 @@ void	get_player_position(t_player *player, char **map)
 		i++;
 	}
 	printf("PLAYER: (%d, %d)\n", j, i);
-	player->posx = j;
-	player->posy = i;
+	player->posx = j - 1;
+	player->posy = i - 1;
 }
 
 void	player_init(t_player *player, char **map)

@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 17:58:30 by kmira             #+#    #+#             */
-/*   Updated: 2020/03/04 22:55:50 by kmira            ###   ########.fr       */
+/*   Updated: 2020/03/04 23:21:49 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,11 @@
 # define PLAYER_CHAR 'P'
 # define ENEMY_CHAR '0'
 # define WALL_CHAR 'W'
+
+# define MOVE_UP 'U'
+# define MOVE_DOWN 'D'
+# define MOVE_LEFT 'L'
+# define MOVE_RIGHT 'R'
 
 # define CLIP_BOUNDARY 4
 
@@ -153,6 +158,7 @@ void	print_map(char **map);
 */
 
 void	player_init(t_player *player, char **map);
+void	update_player(t_level_context *context, t_player *player);
 
 #endif
 
