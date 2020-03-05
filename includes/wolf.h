@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 17:58:30 by kmira             #+#    #+#             */
-/*   Updated: 2020/03/04 19:05:27 by kmira            ###   ########.fr       */
+/*   Updated: 2020/03/04 22:55:50 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@
 # define BLUE_CHANNEL 0
 # define ALPHA_CHANNEL 3
 
-# define PLAYER_CHAR 'X'
+# define PLAYER_CHAR 'P'
 # define ENEMY_CHAR '0'
 # define WALL_CHAR 'W'
 
@@ -146,6 +146,13 @@ void	change_animation(t_animation **addr, t_level_context *level);
 
 char	**get_map(char *file_name);
 void	print_map(char **map);
+
+/*
+** -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-
+** file: player.c
+*/
+
+void	player_init(t_player *player, char **map);
 
 #endif
 

@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 05:09:43 by kmira             #+#    #+#             */
-/*   Updated: 2020/03/04 22:38:43 by kmira            ###   ########.fr       */
+/*   Updated: 2020/03/04 22:46:48 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int		get_line_count(char *raw_map)
 	return (result);
 }
 
-#define EXPAND_AMOUNT 11
+#define EXPAND_AMOUNT 5
 
 void	fill_square(char **map, int col_start, int row_start, char fill)
 {
@@ -104,7 +104,6 @@ void	fill_map(char **map, char *raw_map)
 			at_col++;
 		i++;
 	}
-	print_map(map);
 }
 
 char	**expand_map(char *raw_map)

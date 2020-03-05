@@ -41,6 +41,7 @@ FILES = \
 	main \
 	map \
 	meta_state \
+	player \
 	texture_render \
 	window_render \
 	wolf_destroy \

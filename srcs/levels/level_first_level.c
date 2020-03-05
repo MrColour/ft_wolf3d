@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 17:45:33 by kmira             #+#    #+#             */
-/*   Updated: 2020/03/04 20:02:57 by kmira            ###   ########.fr       */
+/*   Updated: 2020/03/04 22:57:56 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int				level_init_first_level(t_level_context *level, t_wolf_window *mgr_wolf_wi
 	self_full->common_level.clean_level = level_clean_first_level;
 
 	self_full->map = get_map("map00");
-	// print_map(self_full->map);
+	player_init(&self_full->player, self_full->map);
 
 	self_full->common_level.level_ticks = 0;
 
@@ -79,13 +79,13 @@ void			level_get_input_first_level(t_level_context *self)
 	else if (glfwGetKey(wolf_window->window, GLFW_KEY_W) == GLFW_PRESS && level->h_toggle == 0)
 	{
 		level->h_toggle = 1;
-		level->player.posy += 1;
+		level->player.posy -= 1;
 		self->level_ticks = 15;
 	}
 	else if (glfwGetKey(wolf_window->window, GLFW_KEY_S) == GLFW_PRESS && level->h_toggle == 0)
 	{
 		level->h_toggle = 1;
-		level->player.posy -= 1;
+		level->player.posy += 1;
 		self->level_ticks = 15;
 	}
 }
@@ -121,6 +121,7 @@ t_level_context	*level_loop_first_level(t_level_context *self)
 		if (self_full->h_toggle == 1 && self->level_ticks % 25 == 0)
 		{
 			printf("PLAYER POS (%3d, %3d)\n", self_full->player.posx, self_full->player.posy);
+			// print_map(self_full->map);
 			self_full->h_toggle = 0;
 			self->level_ticks = 0;
 		}

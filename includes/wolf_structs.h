@@ -6,12 +6,16 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 17:57:44 by kmira             #+#    #+#             */
-/*   Updated: 2020/03/04 05:28:13 by kmira            ###   ########.fr       */
+/*   Updated: 2020/03/04 22:52:27 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef WOLF_STRUCTS_H
 # define WOLF_STRUCTS_H
+
+# include "glfw3.h"
+
+# include <stdlib.h>
 
 typedef struct	s_level_context t_level_context;
 
