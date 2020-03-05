@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/27 03:56:22 by kmira             #+#    #+#             */
-/*   Updated: 2020/03/02 16:06:31 by kmira            ###   ########.fr       */
+/*   Updated: 2020/03/04 05:20:48 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ typedef struct	s_level_first
 	int						h_toggle;
 
 	t_player				player;
+	char					*map;
 }				t_level_first;
 
 #endif

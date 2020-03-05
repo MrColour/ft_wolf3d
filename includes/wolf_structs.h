@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 17:57:44 by kmira             #+#    #+#             */
-/*   Updated: 2020/03/04 01:24:55 by kmira            ###   ########.fr       */
+/*   Updated: 2020/03/04 05:28:13 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,19 +58,6 @@ typedef union	u_vector3i
 typedef union	u_matrix_3i
 {
 	double		matrix[3][3];
-	// t_vector3i	vectors[3];
-	// struct
-	// {
-	// 	int		xx;
-	// 	int		xy;
-	// 	int		xz;
-	// 	int		yx;
-	// 	int		yy;
-	// 	int		yz;
-	// 	int		zx;
-	// 	int		zy;
-	// 	int		zz;
-	// }			scalars;
 }				t_matrix3i;
 
 typedef struct	s_texture

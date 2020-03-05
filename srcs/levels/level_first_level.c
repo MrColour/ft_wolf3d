@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 17:45:33 by kmira             #+#    #+#             */
-/*   Updated: 2020/03/04 01:32:11 by kmira            ###   ########.fr       */
+/*   Updated: 2020/03/04 05:21:47 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,22 +21,6 @@ t_level_context	*first_level(t_wolf_window *mgr_wolf_window)
 	ft_bzero(self_full, sizeof(*self_full));
 	self_full->common_level.init_self = level_init_first_level;
 	self_full->common_level.mgr_wolf_window = mgr_wolf_window;
-
-	self_full->animation_array = malloc(sizeof(*self_full->animation_array) * (4 + 1));
-	self_full->animation_array[0] = wall_animation();
-	self_full->animation_array[1] = wall_animation();
-	self_full->animation_array[2] = wall_animation();
-
-	// self_full->animation_array[1]->texture->draw.coord.x += self_full->animation_array[1]->texture->width;
-	// self_full->animation_array[2]->texture->draw.coord.x -= self_full->animation_array[2]->texture->width / 2;
-
-	self_full->animation_array[1]->texture->world_pos.coord.z = 50;
-	self_full->animation_array[2]->texture->world_pos.coord.z = 100;
-
-	self_full->animation_array[3] = player_animation();
-	self_full->animation_array[4] = NULL;
-
-	// self_full->player
 
 	result = (t_level_context *)self_full;
 	return (result);
@@ -55,7 +39,12 @@ int				level_init_first_level(t_level_context *level, t_wolf_window *mgr_wolf_wi
 	self_full->common_level.get_next_level = level_get_next_first_level;
 	self_full->common_level.clean_level = level_clean_first_level;
 
+	self_full->map = get_map("map00");
+	printf("MAP: \n%s\n", self_full->map);
+
 	self_full->common_level.level_ticks = 0;
+
+	self_full->animation_array = malloc(sizeof(*self_full->animation_array) * (3 + 1));
 
 	mgr_wolf_window->background_color.col_32bit = 0x777777;
 	return (1);
@@ -75,22 +64,28 @@ void			level_get_input_first_level(t_level_context *self)
 		game_running(GAME_STATE_SET, SHUTDOWN_GAME);
 		level->h_game_state = 'e';
 	}
-	else if (glfwGetKey(wolf_window->window, GLFW_KEY_SPACE) == GLFW_PRESS && level->h_toggle == 0)
-	{
-		level->h_game_state ^= ' ';
-		level->h_toggle = 1;
-		self->level_ticks = 15;
-	}
 	else if (glfwGetKey(wolf_window->window, GLFW_KEY_D) == GLFW_PRESS && level->h_toggle == 0)
 	{
 		level->h_toggle = 1;
-		level->player.posx += 40;
+		level->player.posx += 1;
 		self->level_ticks = 15;
 	}
 	else if (glfwGetKey(wolf_window->window, GLFW_KEY_A) == GLFW_PRESS && level->h_toggle == 0)
 	{
 		level->h_toggle = 1;
-		level->player.posx -= 40;
+		level->player.posx -= 1;
+		self->level_ticks = 15;
+	}
+	else if (glfwGetKey(wolf_window->window, GLFW_KEY_W) == GLFW_PRESS && level->h_toggle == 0)
+	{
+		level->h_toggle = 1;
+		level->player.posy += 1;
+		self->level_ticks = 15;
+	}
+	else if (glfwGetKey(wolf_window->window, GLFW_KEY_S) == GLFW_PRESS && level->h_toggle == 0)
+	{
+		level->h_toggle = 1;
+		level->player.posy -= 1;
 		self->level_ticks = 15;
 	}
 }
@@ -118,45 +113,19 @@ t_level_context	*level_loop_first_level(t_level_context *self)
 	t_level_first	*self_full;
 
 	self_full = (t_level_first *)self;
-
-	t_vector3i		velocity_1;
-	t_vector3i		location_1;
-
-	t_vector3i		velocity_2;
-	t_vector3i		location_2;
-
-	location_1.vector[X] = WIN_WIDTH / 2; location_1.vector[Y] = WIN_HEIGHT / 2;
-	velocity_1.vector[X] = 5; velocity_1.vector[Y] = 1;
-
-	location_2.vector[X] = WIN_WIDTH / 3; location_2.vector[Y] = WIN_HEIGHT / 4;
-	velocity_2.vector[X] = -3; velocity_2.vector[Y] = 2;
-
 	mgr_wolf_window = self->mgr_wolf_window;
-
 	while (self->is_running(self))
 	{
 		self->get_input(self);
 
 		if (self_full->h_toggle == 1 && self->level_ticks % 25 == 0)
 		{
+			printf("PLAYER POS (%3d, %3d)\n", self_full->player.posx, self_full->player.posy);
 			self_full->h_toggle = 0;
 			self->level_ticks = 0;
 		}
 
-		// change_animation(&self_full->animation_array[0], self);
-		// change_animation(&self_full->animation_array[1], self);
-		// change_animation(&self_full->animation_array[2], self);
-
-		// draw_wall_test(self_full->animation_array[0]->texture, mgr_wolf_window);
-		draw_wall_test_1(self_full->animation_array[1]->texture, mgr_wolf_window);
-		draw_wall_test_2(self_full->animation_array[2]->texture, mgr_wolf_window);
-
-		// draw_texture(self_full->animation_array[0]->texture, mgr_wolf_window);
-		// draw_texture(self_full->animation_array[1]->texture, mgr_wolf_window);
-		// draw_texture(self_full->animation_array[2]->texture, mgr_wolf_window);
-
 		refresh_screen(mgr_wolf_window);
-
 		self->level_ticks++;
 	}
 	new_level = self->get_next_level(self);

@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 17:58:30 by kmira             #+#    #+#             */
-/*   Updated: 2020/03/03 01:30:55 by kmira            ###   ########.fr       */
+/*   Updated: 2020/03/04 05:31:55 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@
 # include <OpenGL/glu.h>
 
 # include "glfw3.h"
-# include "glfw3native.h"
 
 # include <fcntl.h>
 # include <math.h>
@@ -35,7 +34,6 @@
 # include <sys/uio.h>
 # include <unistd.h>
 
-# include "debug.h"
 # include "libft.h"
 # include "meta_state.h"
 # include "wolf_level_structs.h"
@@ -61,6 +59,8 @@
 # define PLAYER_CHAR 'X'
 # define ENEMY_CHAR '0'
 # define WALL_CHAR 'W'
+
+# define CLIP_BOUNDARY 4
 
 /*
 ** -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-
@@ -139,9 +139,12 @@ t_animation	*player_animation(void);
 void	fill_shared_lock(t_animation *animation, int *shared_lock);
 void	change_animation(t_animation **addr, t_level_context *level);
 
+/*
+** -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-
+** file: map.c
+*/
 
-void	draw_wall_test(t_texture *texture, t_wolf_window *mgr_wolf_window);
-void	draw_wall_test_1(t_texture *texture, t_wolf_window *mgr_wolf_window);
-void	draw_wall_test_2(t_texture *texture, t_wolf_window *mgr_wolf_window);
+char	*get_map(char *file_name);
 
 #endif
+

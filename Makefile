@@ -24,24 +24,36 @@ OPENGL = \
 		-framework OpenGL \
 		-framework IOKit
 
-FILES = \
-	animations \
-	assets \
+LEVEL_FILES = \
+	level_main_menu \
+	level_first_level \
+
+ASSET_FILES = \
 	assets_play_button \
 	assets_player \
 	assets_tittle \
 	assets_wall \
+
+FILES = \
+	animations \
+	assets \
 	initialization \
-	level_first_level \
-	level_main_menu \
 	main \
+	map \
 	meta_state \
 	texture_render \
 	window_render \
 	wolf_destroy \
 
-SRCS = $(addsuffix .c, $(addprefix srcs/, $(FILES)))
-OBJS = $(addsuffix .o, $(FILES))
+SRCS = \
+	$(addsuffix .c, $(addprefix srcs/, $(FILES))) \
+	$(addsuffix .c, $(addprefix srcs/levels/, $(LEVEL_FILES))) \
+	$(addsuffix .c, $(addprefix srcs/assets/, $(ASSET_FILES)))
+
+OBJS = \
+	$(addsuffix .o, $(FILES)) \
+	$(addsuffix .o, $(LEVEL_FILES)) \
+	$(addsuffix .o, $(ASSET_FILES))
 
 all: $(LIBFT) $(OBJS)
 	gcc -o $(NAME) $(FLAGS) $(INCS) $(OPENGL) $(LIB) $(LIBFT) $(OBJS)
