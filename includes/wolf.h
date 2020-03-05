@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 17:58:30 by kmira             #+#    #+#             */
-/*   Updated: 2020/03/04 05:31:55 by kmira            ###   ########.fr       */
+/*   Updated: 2020/03/04 19:05:27 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,7 +144,8 @@ void	change_animation(t_animation **addr, t_level_context *level);
 ** file: map.c
 */
 
-char	*get_map(char *file_name);
+char	**get_map(char *file_name);
+void	print_map(char **map);
 
 #endif
 
