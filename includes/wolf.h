@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 17:58:30 by kmira             #+#    #+#             */
-/*   Updated: 2020/03/04 23:21:49 by kmira            ###   ########.fr       */
+/*   Updated: 2020/03/05 01:13:29 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,6 +134,7 @@ t_animation	*play_button_animation(void);
 t_animation	*quit_button_animation(void);
 t_animation	*tittle_animation(void);
 t_animation	*wall_animation(void);
+t_animation	*wall2_animation(void);
 t_animation	*player_animation(void);
 
 /*

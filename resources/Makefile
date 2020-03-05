@@ -6,7 +6,7 @@
 #    By: kmira <kmira@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/28 21:32:32 by kmira             #+#    #+#              #
-#    Updated: 2020/03/02 16:06:20 by kmira            ###   ########.fr        #
+#    Updated: 2020/03/05 00:28:01 by kmira            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,6 +18,7 @@ FILE_NAMES = \
 		quit_deactive \
 		tittle \
 		wall \
+		wall2 \
 
 PNG_FILES = $(addsuffix .png, $(addprefix png_files/, $(FILE_NAMES)))
 

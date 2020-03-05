@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 17:45:33 by kmira             #+#    #+#             */
-/*   Updated: 2020/03/04 23:23:19 by kmira            ###   ########.fr       */
+/*   Updated: 2020/03/05 01:33:53 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ t_level_context	*first_level(t_wolf_window *mgr_wolf_window)
 	ft_bzero(self_full, sizeof(*self_full));
 	self_full->common_level.init_self = level_init_first_level;
 	self_full->common_level.mgr_wolf_window = mgr_wolf_window;
+
+
 
 	result = (t_level_context *)self_full;
 	return (result);
@@ -44,7 +46,9 @@ int				level_init_first_level(t_level_context *level, t_wolf_window *mgr_wolf_wi
 
 	self_full->common_level.level_ticks = 0;
 
-	self_full->animation_array = malloc(sizeof(*self_full->animation_array) * (3 + 1));
+	self_full->animation_array = malloc(sizeof(*self_full->animation_array) * (2 + 1));
+	self_full->animation_array[0] = wall_animation();
+	self_full->animation_array[1] = wall2_animation();
 
 	mgr_wolf_window->background_color.col_32bit = 0x777777;
 	return (1);
@@ -106,6 +110,18 @@ int				level_running_first_level(t_level_context *self)
 	return (result);
 }
 
+char		wall_type(char **map, t_player *player)
+{
+	int	row;
+	int	col;
+
+	row = player->posy - 1;
+	col = player->posx;
+	while (row > 0 && map[row][col] == ' ')
+		row--;
+	return (map[row][col]);
+}
+
 t_level_context	*level_loop_first_level(t_level_context *self)
 {
 	t_wolf_window	*mgr_wolf_window;
@@ -128,6 +144,11 @@ t_level_context	*level_loop_first_level(t_level_context *self)
 
 		self_full->h_game_state = 0;
 		print_map(self_full->map);
+
+		if (wall_type(self_full->map, &self_full->player) == 'R')
+			draw_texture(self_full->animation_array[1]->texture, mgr_wolf_window);
+		else
+			draw_texture(self_full->animation_array[0]->texture, mgr_wolf_window);
 
 		refresh_screen(mgr_wolf_window);
 		self->level_ticks++;

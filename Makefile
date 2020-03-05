@@ -33,6 +33,7 @@ ASSET_FILES = \
 	assets_player \
 	assets_tittle \
 	assets_wall \
+	assets_wall2 \
 
 FILES = \
 	animations \
