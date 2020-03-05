@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 17:58:30 by kmira             #+#    #+#             */
-/*   Updated: 2020/03/05 01:13:29 by kmira            ###   ########.fr       */
+/*   Updated: 2020/03/05 01:37:34 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,6 +136,8 @@ t_animation	*tittle_animation(void);
 t_animation	*wall_animation(void);
 t_animation	*wall2_animation(void);
 t_animation	*player_animation(void);
+
+void	render_texture(t_texture *texture, t_wolf_window *window, t_player *player);
 
 /*
 ** -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-

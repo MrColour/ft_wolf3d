@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 17:45:33 by kmira             #+#    #+#             */
-/*   Updated: 2020/03/05 01:33:53 by kmira            ###   ########.fr       */
+/*   Updated: 2020/03/05 01:38:38 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,9 +146,15 @@ t_level_context	*level_loop_first_level(t_level_context *self)
 		print_map(self_full->map);
 
 		if (wall_type(self_full->map, &self_full->player) == 'R')
+		{
 			draw_texture(self_full->animation_array[1]->texture, mgr_wolf_window);
+			render_texture(self_full->animation_array[1]->texture, mgr_wolf_window, &self_full->player);
+		}
 		else
+		{
 			draw_texture(self_full->animation_array[0]->texture, mgr_wolf_window);
+			render_texture(self_full->animation_array[0]->texture, mgr_wolf_window, &self_full->player);
+		}
 
 		refresh_screen(mgr_wolf_window);
 		self->level_ticks++;
