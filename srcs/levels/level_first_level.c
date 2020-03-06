@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 17:45:33 by kmira             #+#    #+#             */
-/*   Updated: 2020/03/06 04:08:20 by kmira            ###   ########.fr       */
+/*   Updated: 2020/03/06 04:11:22 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ int				level_init_first_level(t_level_context *level, t_wolf_window *mgr_wolf_wi
 	self_full->animation_array = malloc(sizeof(*self_full->animation_array) * (2 + 1));
 	self_full->animation_array[0] = wall_animation();
 	self_full->animation_array[1] = wall2_animation();
+
+	// self_full->animation_array[0]->texture->world_pos.coord.x =
 
 	mgr_wolf_window->background_color.col_32bit = 0x777777;
 	return (1);
@@ -143,15 +145,9 @@ t_level_context	*level_loop_first_level(t_level_context *self)
 		print_map(self_full->map);
 
 		if (wall_type(self_full->map, &self_full->player) == 'R')
-		{
 			render_texture(self_full->animation_array[1]->texture, mgr_wolf_window, &self_full->player, self_full->map);
-			// draw_texture(self_full->animation_array[1]->texture, mgr_wolf_window);
-		}
 		else
-		{
 			render_texture(self_full->animation_array[0]->texture, mgr_wolf_window, &self_full->player, self_full->map);
-			// draw_texture(self_full->animation_array[0]->texture, mgr_wolf_window);
-		}
 
 		refresh_screen(mgr_wolf_window);
 		self->level_ticks++;
