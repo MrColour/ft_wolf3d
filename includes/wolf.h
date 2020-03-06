@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 17:58:30 by kmira             #+#    #+#             */
-/*   Updated: 2020/03/05 01:37:34 by kmira            ###   ########.fr       */
+/*   Updated: 2020/03/06 01:33:00 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@
 # include "meta_state.h"
 # include "wolf_level_structs.h"
 # include "wolf_structs.h"
+# include "color.h"
 
 /*
 ** -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-
@@ -66,6 +67,8 @@
 # define MOVE_RIGHT 'R'
 
 # define CLIP_BOUNDARY 4
+
+# define EXPAND_AMOUNT 5
 
 /*
 ** -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-
@@ -137,7 +140,7 @@ t_animation	*wall_animation(void);
 t_animation	*wall2_animation(void);
 t_animation	*player_animation(void);
 
-void	render_texture(t_texture *texture, t_wolf_window *window, t_player *player);
+void	render_texture(t_texture *texture, t_wolf_window *window, t_player *player, char **map);
 
 /*
 ** -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-
@@ -162,6 +165,13 @@ void	print_map(char **map);
 
 void	player_init(t_player *player, char **map);
 void	update_player(t_level_context *context, t_player *player);
+
+/*
+** -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-
+** file: ft_curses.c
+*/
+
+void	move_cursor_up(int amount);
 
 #endif
 

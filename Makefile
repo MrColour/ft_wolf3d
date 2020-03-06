@@ -38,6 +38,7 @@ ASSET_FILES = \
 FILES = \
 	animations \
 	assets \
+	ft_curses \
 	initialization \
 	main \
 	map \

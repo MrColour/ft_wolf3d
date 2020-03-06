@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 01:30:01 by kmira             #+#    #+#             */
-/*   Updated: 2020/03/04 04:50:45 by kmira            ###   ########.fr       */
+/*   Updated: 2020/03/06 01:54:56 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,8 @@ t_animation	*wall_animation(void)
 
 	offset = wall->texture->width / 2;
 
-	wall->texture->world_pos.coord.x = 0;
-	wall->texture->world_pos.coord.y = 0;
+	wall->texture->screen_pos.coord.x = 0;
+	wall->texture->screen_pos.coord.y = 0;
 
 	wall->update_sprite = wall_update;
 
