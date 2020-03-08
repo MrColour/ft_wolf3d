@@ -70,42 +70,18 @@ void			level_get_input_first_level(t_level_context *self)
 		game_running(GAME_STATE_SET, SHUTDOWN_GAME);
 		level->h_game_state = 'e';
 	}
-	else if (glfwGetKey(wolf_window->window, GLFW_KEY_D) == GLFW_PRESS && level->h_toggle == 0)
-	{
-		level->h_toggle = 1;
+	if (glfwGetKey(wolf_window->window, GLFW_KEY_D) == GLFW_PRESS)
 		level->h_game_state |= MOVE_LEFT;
-		self->level_ticks = 15;
-	}
-	else if (glfwGetKey(wolf_window->window, GLFW_KEY_A) == GLFW_PRESS && level->h_toggle == 0)
-	{
-		level->h_toggle = 1;
+	if (glfwGetKey(wolf_window->window, GLFW_KEY_A) == GLFW_PRESS)
 		level->h_game_state |= MOVE_RIGHT;
-		self->level_ticks = 15;
-	}
-	else if (glfwGetKey(wolf_window->window, GLFW_KEY_W) == GLFW_PRESS && level->h_toggle == 0)
-	{
-		level->h_toggle = 1;
+	if (glfwGetKey(wolf_window->window, GLFW_KEY_W) == GLFW_PRESS)
 		level->h_game_state |= MOVE_UP;
-		self->level_ticks = 15;
-	}
-	else if (glfwGetKey(wolf_window->window, GLFW_KEY_S) == GLFW_PRESS && level->h_toggle == 0)
-	{
-		level->h_toggle = 1;
+	if (glfwGetKey(wolf_window->window, GLFW_KEY_S) == GLFW_PRESS)
 		level->h_game_state |= MOVE_DOWN;
-		self->level_ticks = 15;
-	}
-	else if (glfwGetKey(wolf_window->window, GLFW_KEY_LEFT) == GLFW_PRESS && level->h_toggle == 0)
-	{
-		level->h_toggle = 1;
+	if (glfwGetKey(wolf_window->window, GLFW_KEY_LEFT) == GLFW_PRESS)
 		level->h_game_state |= ROTATE_LEFT;
-		self->level_ticks = 15;
-	}
-	else if (glfwGetKey(wolf_window->window, GLFW_KEY_RIGHT) == GLFW_PRESS && level->h_toggle == 0)
-	{
-		level->h_toggle = 1;
+	if (glfwGetKey(wolf_window->window, GLFW_KEY_RIGHT) == GLFW_PRESS)
 		level->h_game_state |= ROTATE_RIGHT;
-		self->level_ticks = 15;
-	}
 }
 
 int				level_running_first_level(t_level_context *self)
@@ -136,17 +112,12 @@ t_level_context	*level_loop_first_level(t_level_context *self)
 	{
 		self->get_input(self);
 
-		if (self_full->h_toggle == 1 && self->level_ticks % 20 == 0)
-		{
-			self_full->h_toggle = 0;
-			self->level_ticks = 0;
-		}
-
 		update_player(self, &self_full->player);
-		self_full->h_game_state = 0;
 		print_map(self_full->map.map);
 		render2_texture(self_full->animation_array[0]->texture, mgr_wolf_window, &self_full->player, self_full->map.map);
 		refresh_screen(mgr_wolf_window);
+
+		self_full->h_game_state = 0;
 		self->level_ticks++;
 	}
 	new_level = self->get_next_level(self);

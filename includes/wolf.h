@@ -59,13 +59,12 @@
 # define ENEMY_CHAR '0'
 # define WALL_CHAR 'W'
 
-# define MOVE_UP 'U'
-# define MOVE_DOWN 'D'
-# define MOVE_LEFT 'L'
-# define MOVE_RIGHT 'R'
-
-# define ROTATE_LEFT '>'
-# define ROTATE_RIGHT '<'
+# define MOVE_UP		0x000001
+# define MOVE_DOWN		0x000010
+# define MOVE_LEFT		0x000100
+# define MOVE_RIGHT		0x001000
+# define ROTATE_LEFT	0x010000
+# define ROTATE_RIGHT	0x100000
 
 # define CLIP_BOUNDARY 4
 
