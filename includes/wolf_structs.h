@@ -6,7 +6,7 @@
 /*   By: jjosephi <jjosephi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 17:57:44 by kmira             #+#    #+#             */
-/*   Updated: 2020/03/08 09:33:31 by jjosephi         ###   ########.fr       */
+/*   Updated: 2020/03/08 09:35:27 by jjosephi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define WOLF_STRUCTS_H
 
 # include "glfw3.h"
-
+# include "wolf.h"
 # include <stdlib.h>
 
 typedef struct	s_level_context t_level_context;
