@@ -6,7 +6,7 @@
 /*   By: jjosephi <jjosephi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 17:57:44 by kmira             #+#    #+#             */
-/*   Updated: 2020/03/07 18:42:41 by jjosephi         ###   ########.fr       */
+/*   Updated: 2020/03/07 18:51:41 by jjosephi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,10 +118,16 @@ typedef struct 	s_camera
 	double length;
 }				t_camera;
 
+typedef struct s_rayhit
+{
+	t_vector3f pos;
+	int side;
+}				t_rayhit;
+
 typedef struct s_ray
 {
 	t_vector3f vect;
-	t_vector3f hitpos;
+	t_rayhit hit;
 }				t_ray;
 
 typedef struct	s_player
