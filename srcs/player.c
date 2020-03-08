@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jjosephi <jjosephi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/01 17:08:12 by marvin            #+#    #+#             */
-/*   Updated: 2020/03/07 20:29:02 by kmira            ###   ########.fr       */
+/*   Updated: 2020/03/08 09:27:56 by jjosephi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,8 @@ void	get_player_position(t_player *player, char **map)
 
 void	player_init(t_player *player, char **map)
 {
-	player->angle = 90;
-
+	player->angle = 0;
+	player->dir.coord.x = 4;
+	player->dir.coord.y = 0;
 	get_player_position(player, map);
 }

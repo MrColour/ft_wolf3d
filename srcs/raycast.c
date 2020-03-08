@@ -6,7 +6,7 @@
 /*   By: jjosephi <jjosephi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/01 16:54:08 by marvin            #+#    #+#             */
-/*   Updated: 2020/03/07 20:51:31 by jjosephi         ###   ########.fr       */
+/*   Updated: 2020/03/08 09:30:38 by jjosephi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,13 @@ void	raycast(t_player *player, t_map *map)
 	t_ray ray;
 	
 	i = 0;
-	ray_angle = 90;
+	ray_angle = player->dir.coord.x;
 	player->dir = rotate_vector(player->pos, player->angle);
-	 rotate_vector(player->cam.pos, player->angle);
-	while (i < player->cam.length.coord.x)
+	while (i > player->dir.coord.x * -1)
 	{
-		ray.vect = ray_vect(*player, player->cam, ray_angle);
-		
-		ray_angle -= player->view_angle / WIN_WIDTH;
+		ray.vect = ray_vect(*player, ray_angle);
+		 
+		ray_angle -= player->dir.coord.x/ WIN_WIDTH;
 	}
 	
 }

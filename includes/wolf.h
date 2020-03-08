@@ -3,14 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   wolf.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jjosephi <jjosephi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 17:58:30 by kmira             #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2020/03/07 20:44:48 by jjosephi         ###   ########.fr       */
-=======
-/*   Updated: 2020/03/07 19:15:19 by kmira            ###   ########.fr       */
->>>>>>> fb14069ad2b86cc2484a8174273454764a06adff
+/*   Updated: 2020/03/08 09:30:25 by jjosephi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -186,7 +182,7 @@ void	move_cursor_up(int amount);
 ** file: vectors.c
 */
 t_vector3f Vect_add(t_vector3f vect1, t_vector3f vect2);
-t_vector3f ray_vect(t_player player, t_camera cam, double rayangle);
+t_vector3f ray_vect(t_player player, double rayangle);
 
 /*
 ** -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-
