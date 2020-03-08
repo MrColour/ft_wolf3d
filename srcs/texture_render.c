@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/28 03:27:09 by kmira             #+#    #+#             */
-/*   Updated: 2020/03/07 05:05:58 by kmira            ###   ########.fr       */
+/*   Updated: 2020/03/07 18:57:35 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -183,24 +183,6 @@ void	draw_transform3_texture(t_texture *texture, t_wolf_window *mgr_wolf_window,
 	}
 }
 
-t_vector3i	wall_start(char **map, t_player *player)
-{
-	int			row;
-	int			col;
-	t_vector3i	distance;
-
-	distance.coord.y = 0;
-	row = player->posy - 1;
-	col = player->posx;
-	while (row > 0 && map[row][col] == ' ')
-	{
-		row--;
-		distance.coord.y++;
-	}
-	distance.coord.x = player->posx % EXPAND_AMOUNT;
-	return (distance);
-}
-
 /*
 ** So the problem here seems to be that I have to transform how much
 ** each pixel from the texture is from the actual world.
@@ -220,14 +202,14 @@ void	render_texture(t_texture *texture, t_wolf_window *window, t_player *player,
 	t_vector3i	texture_world_pos;
 
 	// texture_world_pos = wall_start(map, player);
-	texture_world_pos.coord.x = player->posx - texture->world_pos.coord.x;
-	texture_world_pos.coord.y = player->posy - texture->world_pos.coord.y;
+	texture_world_pos.coord.x = player->pos.coord.x - texture->world_pos.coord.x;
+	texture_world_pos.coord.y = player->pos.coord.y - texture->world_pos.coord.y;
 
 	if (texture_world_pos.coord.y <= 0)
 		return ;
 
 	texture_world_pos.coord.z = 2;
-	printf("PLAYER: %d, %d and WALL: %d %d\n", player->posx, player->posy, texture->world_pos.coord.x, texture->world_pos.coord.y);
+	printf("PLAYER: %f, %f and WALL: %d %d\n", player->pos.coord.x, player->pos.coord.y, texture->world_pos.coord.x, texture->world_pos.coord.y);
 	printf("Wall pos: (%i, %i, %i)\n", texture_world_pos.coord.x, texture_world_pos.coord.y, texture_world_pos.coord.z);
 
 	double	cam_x;
@@ -356,9 +338,9 @@ void	render2_texture(t_texture *texture, t_wolf_window *window, t_player *player
 	int		cam_depth_offset;
 
 	cam_depth_offset = 3;
-	camera_location.coord.x = player->posx;
+	camera_location.coord.x = player->pos.coord.x;
 	camera_location.coord.y = 1; //Height
-	camera_location.coord.z = player->posy + cam_depth_offset;
+	camera_location.coord.z = player->pos.coord.y + cam_depth_offset;
 	printf("CAM: (%f, %f, %f)\n", camera_location.coord.x, camera_location.coord.z, camera_location.coord.y);
 
 	printf("DISTANCE: %f, %f, %f, %f\n",
