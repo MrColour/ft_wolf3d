@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/28 03:27:09 by kmira             #+#    #+#             */
-/*   Updated: 2020/03/07 18:57:35 by kmira            ###   ########.fr       */
+/*   Updated: 2020/03/07 20:21:05 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -334,6 +334,7 @@ void	render2_texture(t_texture *texture, t_wolf_window *window, t_player *player
 	printf("CORNER 2: (%f, %f, %f)\n", corner2.coord.x, corner2.coord.z, corner2.coord.y);
 	printf("CORNER 3: (%f, %f, %f)\n", corner3.coord.x, corner3.coord.z, corner3.coord.y);
 	printf("CORNER 4: (%f, %f, %f)\n", corner4.coord.x, corner4.coord.z, corner4.coord.y);
+	printf("PLAYER_ANGLE: %f\n", player->angle);
 
 	int		cam_depth_offset;
 
@@ -378,7 +379,7 @@ void	render2_texture(t_texture *texture, t_wolf_window *window, t_player *player
 	printf("TRANSFORMED CORNER 3: (%f, %f)\n", transformed_corner3.coord.x, transformed_corner3.coord.y);
 	printf("TRANSFORMED CORNER 4: (%f, %f)\n", transformed_corner4.coord.x, transformed_corner4.coord.y);
 
-	move_cursor_up(63);
+	move_cursor_up(64);
 
 	(void)texture;
 	(void)window;

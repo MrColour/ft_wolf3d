@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 17:45:33 by kmira             #+#    #+#             */
-/*   Updated: 2020/03/07 03:25:59 by kmira            ###   ########.fr       */
+/*   Updated: 2020/03/07 19:15:24 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,49 +47,10 @@ int				level_init_first_level(t_level_context *level, t_wolf_window *mgr_wolf_wi
 	self_full->animation_array[0] = wall_animation();
 
 	self_full->animation_array[1] = NULL;
-	// self_full->animation_array[1] = wall_animation();
-	// self_full->animation_array[2] = wall_animation();
-	// self_full->animation_array[3] = wall_animation();
-	// self_full->animation_array[4] = wall2_animation();
-	// self_full->animation_array[5] = wall_animation();
-	// self_full->animation_array[6] = wall_animation();
-	// self_full->animation_array[7] = wall_animation();
-	// self_full->animation_array[8] = wall_animation();
-	// self_full->animation_array[9] = wall_animation();
-
 
 	self_full->animation_array[0]->texture->world_pos.coord.x = 8 * EXPAND_AMOUNT - 1;
 	self_full->animation_array[0]->texture->world_pos.coord.y = 2;
 	self_full->animation_array[0]->texture->world_pos.coord.z = 3 * EXPAND_AMOUNT;
-
-	// self_full->animation_array[1]->texture->world_pos.coord.x = 7 * EXPAND_AMOUNT - 1;
-	// self_full->animation_array[1]->texture->world_pos.coord.y = 3 * EXPAND_AMOUNT;
-
-	// self_full->animation_array[2]->texture->world_pos.coord.x = 6 * EXPAND_AMOUNT - 1;
-	// self_full->animation_array[2]->texture->world_pos.coord.y = 3 * EXPAND_AMOUNT;
-
-	// self_full->animation_array[3]->texture->world_pos.coord.x = 5 * EXPAND_AMOUNT - 1;
-	// self_full->animation_array[3]->texture->world_pos.coord.y = 4 * EXPAND_AMOUNT;
-
-	// self_full->animation_array[4]->texture->world_pos.coord.x = 5 * EXPAND_AMOUNT - 1;
-	// self_full->animation_array[4]->texture->world_pos.coord.y = 2 * EXPAND_AMOUNT;
-
-	// self_full->animation_array[5]->texture->world_pos.coord.x = 5 * EXPAND_AMOUNT - 1;
-	// self_full->animation_array[5]->texture->world_pos.coord.y = 4 * EXPAND_AMOUNT;
-
-	// self_full->animation_array[6]->texture->world_pos.coord.x = 1 * EXPAND_AMOUNT - 1;
-	// self_full->animation_array[6]->texture->world_pos.coord.y = 8 * EXPAND_AMOUNT;
-
-	// self_full->animation_array[7]->texture->world_pos.coord.x = 5 * EXPAND_AMOUNT - 1;
-	// self_full->animation_array[7]->texture->world_pos.coord.y = 4 * EXPAND_AMOUNT;
-
-	// self_full->animation_array[8]->texture->world_pos.coord.x = 2 * EXPAND_AMOUNT - 1;
-	// self_full->animation_array[8]->texture->world_pos.coord.y = 3 * EXPAND_AMOUNT;
-
-	// self_full->animation_array[9]->texture->world_pos.coord.x = 1 * EXPAND_AMOUNT - 1;
-	// self_full->animation_array[9]->texture->world_pos.coord.y = 9 * EXPAND_AMOUNT;
-
-	self_full->animation_array[10] = NULL;
 
 	mgr_wolf_window->background_color.col_32bit = 0x777777;
 	return (1);
@@ -133,6 +94,18 @@ void			level_get_input_first_level(t_level_context *self)
 		level->h_game_state = MOVE_DOWN;
 		self->level_ticks = 15;
 	}
+	else if (glfwGetKey(wolf_window->window, GLFW_KEY_LEFT) == GLFW_PRESS && level->h_toggle == 0)
+	{
+		level->h_toggle = 1;
+		level->h_game_state = ROTATE_LEFT;
+		self->level_ticks = 15;
+	}
+	else if (glfwGetKey(wolf_window->window, GLFW_KEY_RIGHT) == GLFW_PRESS && level->h_toggle == 0)
+	{
+		level->h_toggle = 1;
+		level->h_game_state = ROTATE_RIGHT;
+		self->level_ticks = 15;
+	}
 }
 
 int				level_running_first_level(t_level_context *self)
@@ -149,18 +122,6 @@ int				level_running_first_level(t_level_context *self)
 	else if (self_full->h_game_state == '\007')
 		result = 0;
 	return (result);
-}
-
-char		wall_type(char **map, t_player *player)
-{
-	int	row;
-	int	col;
-
-	row = player->posy - 1;
-	col = player->posx;
-	while (row > 0 && map[row][col] == ' ')
-		row--;
-	return (map[row][col]);
 }
 
 t_level_context	*level_loop_first_level(t_level_context *self)
