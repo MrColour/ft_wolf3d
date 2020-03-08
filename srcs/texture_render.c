@@ -55,17 +55,8 @@ void	draw_texture(t_texture *texture, t_wolf_window *mgr_wolf_window)
 
 void	render2_texture(t_texture *texture, t_wolf_window *window, t_player *player, char **map)
 {
-	t_vector3f	camera_location;
-
 	printf("PLAYER_ANGLE: %f\n", player->angle);
-
-	int		cam_depth_offset;
-
-	cam_depth_offset = 3;
-	camera_location.coord.x = player->pos.coord.x;
-	camera_location.coord.y = 1; //Height
-	camera_location.coord.z = player->pos.coord.y + cam_depth_offset;
-	printf("CAM: (%f, %f, %f)\n", camera_location.coord.x, camera_location.coord.z, camera_location.coord.y);
+	printf("PLAYER: (%f, %f)\n", player->pos.coord.x, player->pos.coord.y);
 
 	move_cursor_up(14);
 
