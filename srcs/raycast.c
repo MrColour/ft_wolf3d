@@ -6,7 +6,7 @@
 /*   By: jjosephi <jjosephi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/01 16:54:08 by marvin            #+#    #+#             */
-/*   Updated: 2020/03/08 10:42:41 by jjosephi         ###   ########.fr       */
+/*   Updated: 2020/03/08 10:48:02 by jjosephi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ t_rayhit vector_step(t_vector3f m, t_map map, t_player player)
 		y += d_y;
 		x += d_x;
 	}
+	return (NULL);
 }
 
 t_ray	raycast(t_player *player, t_map *map)
