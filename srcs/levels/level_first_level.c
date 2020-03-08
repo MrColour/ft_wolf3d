@@ -73,37 +73,37 @@ void			level_get_input_first_level(t_level_context *self)
 	else if (glfwGetKey(wolf_window->window, GLFW_KEY_D) == GLFW_PRESS && level->h_toggle == 0)
 	{
 		level->h_toggle = 1;
-		level->h_game_state = MOVE_LEFT;
+		level->h_game_state |= MOVE_LEFT;
 		self->level_ticks = 15;
 	}
 	else if (glfwGetKey(wolf_window->window, GLFW_KEY_A) == GLFW_PRESS && level->h_toggle == 0)
 	{
 		level->h_toggle = 1;
-		level->h_game_state = MOVE_RIGHT;
+		level->h_game_state |= MOVE_RIGHT;
 		self->level_ticks = 15;
 	}
 	else if (glfwGetKey(wolf_window->window, GLFW_KEY_W) == GLFW_PRESS && level->h_toggle == 0)
 	{
 		level->h_toggle = 1;
-		level->h_game_state = MOVE_UP;
+		level->h_game_state |= MOVE_UP;
 		self->level_ticks = 15;
 	}
 	else if (glfwGetKey(wolf_window->window, GLFW_KEY_S) == GLFW_PRESS && level->h_toggle == 0)
 	{
 		level->h_toggle = 1;
-		level->h_game_state = MOVE_DOWN;
+		level->h_game_state |= MOVE_DOWN;
 		self->level_ticks = 15;
 	}
 	else if (glfwGetKey(wolf_window->window, GLFW_KEY_LEFT) == GLFW_PRESS && level->h_toggle == 0)
 	{
 		level->h_toggle = 1;
-		level->h_game_state = ROTATE_LEFT;
+		level->h_game_state |= ROTATE_LEFT;
 		self->level_ticks = 15;
 	}
 	else if (glfwGetKey(wolf_window->window, GLFW_KEY_RIGHT) == GLFW_PRESS && level->h_toggle == 0)
 	{
 		level->h_toggle = 1;
-		level->h_game_state = ROTATE_RIGHT;
+		level->h_game_state |= ROTATE_RIGHT;
 		self->level_ticks = 15;
 	}
 }
