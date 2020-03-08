@@ -6,7 +6,7 @@
 /*   By: jjosephi <jjosephi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 17:58:30 by kmira             #+#    #+#             */
-/*   Updated: 2020/03/07 18:34:18 by jjosephi         ###   ########.fr       */
+/*   Updated: 2020/03/07 20:44:48 by jjosephi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -179,6 +179,7 @@ void	move_cursor_up(int amount);
 ** file: vectors.c
 */
 t_vector3f Vect_add(t_vector3f vect1, t_vector3f vect2);
+t_vector3f ray_vect(t_player player, t_camera cam, double rayangle);
 
 /*
 ** -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-
