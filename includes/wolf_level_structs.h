@@ -52,7 +52,7 @@ typedef struct	s_level_first
 	int						h_toggle;
 
 	t_player				player;
-	char					**map;
+	t_map					map;
 }				t_level_first;
 
 #endif

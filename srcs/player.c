@@ -36,21 +36,21 @@ void	update_player(t_level_context *context, t_player *player)
 	int				pos_y;
 
 	level = (t_level_first *)context;
-	map = level->map;
+	map = level->map.map;
 
 	pos_x = (int)player->pos.coord.x;
 	pos_y = (int)player->pos.coord.y;
-	if (level->h_game_state == MOVE_UP && map[pos_y - 1][pos_x] != 'W' && map[pos_y - 1][pos_x] != 'R')
+	if (level->h_game_state & MOVE_UP && map[pos_y - 1][pos_x] != 'W' && map[pos_y - 1][pos_x] != 'R')
 		player->pos.coord.y -= MOVEMENT_SPEED;
-	else if (level->h_game_state == MOVE_DOWN && map[pos_y + 1][pos_x] != 'W' && map[pos_y + 1][pos_x] != 'R')
+	else if (level->h_game_state & MOVE_DOWN && map[pos_y + 1][pos_x] != 'W' && map[pos_y + 1][pos_x] != 'R')
 		player->pos.coord.y += MOVEMENT_SPEED;
-	else if (level->h_game_state == MOVE_RIGHT && map[pos_y][pos_x - 1] != 'W' && map[pos_y][pos_x - 1] != 'R')
+	else if (level->h_game_state & MOVE_RIGHT && map[pos_y][pos_x - 1] != 'W' && map[pos_y][pos_x - 1] != 'R')
 		player->pos.coord.x -= MOVEMENT_SPEED;
-	else if (level->h_game_state == MOVE_LEFT && map[pos_y][pos_x + 1] != 'W' && map[pos_y][pos_x + 1] != 'R')
+	else if (level->h_game_state & MOVE_LEFT && map[pos_y][pos_x + 1] != 'W' && map[pos_y][pos_x + 1] != 'R')
 		player->pos.coord.x += MOVEMENT_SPEED;
-	else if (level->h_game_state == ROTATE_LEFT)
+	else if (level->h_game_state & ROTATE_LEFT)
 		player->angle -= ROTATE_SPEED;
-	else if (level->h_game_state == ROTATE_RIGHT)
+	else if (level->h_game_state & ROTATE_RIGHT)
 		player->angle += ROTATE_SPEED;
 
 	modulo_angle(&player->angle);
@@ -78,7 +78,6 @@ void	get_player_position(t_player *player, char **map)
 		}
 		i++;
 	}
-	printf("PLAYER: (%d, %d)\n", j, i);
 	player->pos.coord.x = j - 1;
 	player->pos.coord.y = i - 1;
 }

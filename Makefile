@@ -79,6 +79,7 @@ re: fclean all
 save: clean
 	git add .
 	git commit -m "$(MSG)"
+	git pull
 	git push
 
 quick: re
