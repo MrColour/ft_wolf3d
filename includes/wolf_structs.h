@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   wolf_structs.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jjosephi <jjosephi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 17:57:44 by kmira             #+#    #+#             */
-/*   Updated: 2020/03/07 03:01:40 by kmira            ###   ########.fr       */
+/*   Updated: 2020/03/07 17:58:14 by jjosephi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,13 +112,17 @@ typedef struct s_map
 	int 		height;
 }				t_map;
 
+typedef struct 	s_camera
+{
+	t_vector3f pos;
+	float length;
+}				t_camera;
+
 typedef struct	s_player
 {
-	int			posx;
-	int			posy;
-
-	float		viewangle;
-	float		rotation;
+	double angle;
+	t_vector3f pos;
+	t_vector3f dir;	
 }				t_player;
 
 #endif
