@@ -6,7 +6,7 @@
 /*   By: jjosephi <jjosephi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/01 16:54:08 by marvin            #+#    #+#             */
-/*   Updated: 2020/03/08 10:48:02 by jjosephi         ###   ########.fr       */
+/*   Updated: 2020/03/08 15:12:31 by jjosephi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,9 @@ t_rayhit vector_step(t_vector3f m, t_map map, t_player player)
 		y += d_y;
 		x += d_x;
 	}
-	return (NULL);
+	hit.pos.coord.x = -1;
+	hit.pos.coord.y = -1;
+	return (hit);
 }
 
 t_ray	raycast(t_player *player, t_map *map)
@@ -73,7 +75,6 @@ t_ray	raycast(t_player *player, t_map *map)
 	while (i > player->dir.coord.x * -1)
 	{
 		ray.vect = ray_vect(*player, ray_angle);
-		
 		ray_angle -= player->dir.coord.x/ WIN_WIDTH;
 	}
 	
