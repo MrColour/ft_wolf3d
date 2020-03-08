@@ -6,7 +6,7 @@
 /*   By: jjosephi <jjosephi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 17:57:44 by kmira             #+#    #+#             */
-/*   Updated: 2020/03/07 17:58:14 by jjosephi         ###   ########.fr       */
+/*   Updated: 2020/03/07 18:06:24 by jjosephi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,7 @@ typedef struct s_map
 typedef struct 	s_camera
 {
 	t_vector3f pos;
-	float length;
+	double length;
 }				t_camera;
 
 typedef struct	s_player
@@ -123,6 +123,8 @@ typedef struct	s_player
 	double angle;
 	t_vector3f pos;
 	t_vector3f dir;	
+	t_camera cam;
+	
 }				t_player;
 
 #endif

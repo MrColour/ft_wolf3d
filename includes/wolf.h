@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   wolf.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jjosephi <jjosephi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 17:58:30 by kmira             #+#    #+#             */
-/*   Updated: 2020/03/07 02:45:05 by kmira            ###   ########.fr       */
+/*   Updated: 2020/03/07 18:14:52 by jjosephi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -174,5 +174,10 @@ void	update_player(t_level_context *context, t_player *player);
 
 void	move_cursor_up(int amount);
 
-#endif
+/*
+** -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-
+** file: vectors.c
+*/
+t_vector3f Vect_add(t_vector3f vect1, t_vector3f vect2);
 
+#endif
