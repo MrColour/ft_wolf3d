@@ -20,6 +20,22 @@ double			to_radians(double angle)
 	return (result);
 }
 
+t_vector3f		vector_at_angle(double angle, double scale)
+{
+	t_vector3f	result;
+	double		radian;
+
+	radian = to_radians(angle);
+	result.coord.x = cos(angle) * scale;
+	result.coord.y = sin(angle) * scale;
+	return (result);
+}
+
+t_vector3f		angle_to_vector(double angle)
+{
+	return (vector_at_angle(angle, 1.0));
+}
+
 t_vector3f		rotate_vector(t_vector3f vector, double angle)
 {
 	t_vector3f	result;
