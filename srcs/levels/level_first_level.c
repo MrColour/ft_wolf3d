@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 17:45:33 by kmira             #+#    #+#             */
-/*   Updated: 2020/03/06 04:11:22 by kmira            ###   ########.fr       */
+/*   Updated: 2020/03/07 03:25:59 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,53 @@ int				level_init_first_level(t_level_context *level, t_wolf_window *mgr_wolf_wi
 
 	self_full->common_level.level_ticks = 0;
 
-	self_full->animation_array = malloc(sizeof(*self_full->animation_array) * (2 + 1));
+	self_full->animation_array = malloc(sizeof(*self_full->animation_array) * (10 + 1));
 	self_full->animation_array[0] = wall_animation();
-	self_full->animation_array[1] = wall2_animation();
 
-	// self_full->animation_array[0]->texture->world_pos.coord.x =
+	self_full->animation_array[1] = NULL;
+	// self_full->animation_array[1] = wall_animation();
+	// self_full->animation_array[2] = wall_animation();
+	// self_full->animation_array[3] = wall_animation();
+	// self_full->animation_array[4] = wall2_animation();
+	// self_full->animation_array[5] = wall_animation();
+	// self_full->animation_array[6] = wall_animation();
+	// self_full->animation_array[7] = wall_animation();
+	// self_full->animation_array[8] = wall_animation();
+	// self_full->animation_array[9] = wall_animation();
+
+
+	self_full->animation_array[0]->texture->world_pos.coord.x = 8 * EXPAND_AMOUNT - 1;
+	self_full->animation_array[0]->texture->world_pos.coord.y = 2;
+	self_full->animation_array[0]->texture->world_pos.coord.z = 3 * EXPAND_AMOUNT;
+
+	// self_full->animation_array[1]->texture->world_pos.coord.x = 7 * EXPAND_AMOUNT - 1;
+	// self_full->animation_array[1]->texture->world_pos.coord.y = 3 * EXPAND_AMOUNT;
+
+	// self_full->animation_array[2]->texture->world_pos.coord.x = 6 * EXPAND_AMOUNT - 1;
+	// self_full->animation_array[2]->texture->world_pos.coord.y = 3 * EXPAND_AMOUNT;
+
+	// self_full->animation_array[3]->texture->world_pos.coord.x = 5 * EXPAND_AMOUNT - 1;
+	// self_full->animation_array[3]->texture->world_pos.coord.y = 4 * EXPAND_AMOUNT;
+
+	// self_full->animation_array[4]->texture->world_pos.coord.x = 5 * EXPAND_AMOUNT - 1;
+	// self_full->animation_array[4]->texture->world_pos.coord.y = 2 * EXPAND_AMOUNT;
+
+	// self_full->animation_array[5]->texture->world_pos.coord.x = 5 * EXPAND_AMOUNT - 1;
+	// self_full->animation_array[5]->texture->world_pos.coord.y = 4 * EXPAND_AMOUNT;
+
+	// self_full->animation_array[6]->texture->world_pos.coord.x = 1 * EXPAND_AMOUNT - 1;
+	// self_full->animation_array[6]->texture->world_pos.coord.y = 8 * EXPAND_AMOUNT;
+
+	// self_full->animation_array[7]->texture->world_pos.coord.x = 5 * EXPAND_AMOUNT - 1;
+	// self_full->animation_array[7]->texture->world_pos.coord.y = 4 * EXPAND_AMOUNT;
+
+	// self_full->animation_array[8]->texture->world_pos.coord.x = 2 * EXPAND_AMOUNT - 1;
+	// self_full->animation_array[8]->texture->world_pos.coord.y = 3 * EXPAND_AMOUNT;
+
+	// self_full->animation_array[9]->texture->world_pos.coord.x = 1 * EXPAND_AMOUNT - 1;
+	// self_full->animation_array[9]->texture->world_pos.coord.y = 9 * EXPAND_AMOUNT;
+
+	self_full->animation_array[10] = NULL;
 
 	mgr_wolf_window->background_color.col_32bit = 0x777777;
 	return (1);
@@ -126,6 +168,7 @@ t_level_context	*level_loop_first_level(t_level_context *self)
 	t_wolf_window	*mgr_wolf_window;
 	t_level_context	*new_level;
 	t_level_first	*self_full;
+	int				i;
 
 	self_full = (t_level_first *)self;
 	mgr_wolf_window = self->mgr_wolf_window;
@@ -144,10 +187,9 @@ t_level_context	*level_loop_first_level(t_level_context *self)
 		self_full->h_game_state = 0;
 		print_map(self_full->map);
 
-		if (wall_type(self_full->map, &self_full->player) == 'R')
-			render_texture(self_full->animation_array[1]->texture, mgr_wolf_window, &self_full->player, self_full->map);
-		else
-			render_texture(self_full->animation_array[0]->texture, mgr_wolf_window, &self_full->player, self_full->map);
+		i = -1;
+		// while (self_full->animation_array[++i] != NULL)
+		render2_texture(self_full->animation_array[0]->texture, mgr_wolf_window, &self_full->player, self_full->map);
 
 		refresh_screen(mgr_wolf_window);
 		self->level_ticks++;

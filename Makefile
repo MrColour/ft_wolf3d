@@ -85,5 +85,6 @@ quick: re
 	make clean
 
 play: quick
+	clear
 	./$(NAME)
 

@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 17:57:44 by kmira             #+#    #+#             */
-/*   Updated: 2020/03/06 01:32:47 by kmira            ###   ########.fr       */
+/*   Updated: 2020/03/07 03:01:40 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,17 @@ typedef union	u_vector3i
 		int		z;
 	}			coord;
 }				t_vector3i;
+
+typedef union	u_vector3f
+{
+	double		vector[3];
+	struct
+	{
+		double		x;
+		double		y;
+		double		z;
+	}			coord;
+}				t_vector3f;
 
 /*
 ** This is a transformation matrix.
