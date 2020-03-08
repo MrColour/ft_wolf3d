@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 17:45:33 by kmira             #+#    #+#             */
-/*   Updated: 2020/03/07 03:25:59 by kmira            ###   ########.fr       */
+/*   Updated: 2020/03/07 18:58:30 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,18 +149,6 @@ int				level_running_first_level(t_level_context *self)
 	else if (self_full->h_game_state == '\007')
 		result = 0;
 	return (result);
-}
-
-char		wall_type(char **map, t_player *player)
-{
-	int	row;
-	int	col;
-
-	row = player->posy - 1;
-	col = player->posx;
-	while (row > 0 && map[row][col] == ' ')
-		row--;
-	return (map[row][col]);
 }
 
 t_level_context	*level_loop_first_level(t_level_context *self)
