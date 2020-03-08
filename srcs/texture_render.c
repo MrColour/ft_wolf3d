@@ -84,7 +84,7 @@ void	render2_texture(t_texture *texture, t_wolf_window *window, t_player *player
 	camera_location.coord.z = player->pos.coord.y + cam_depth_offset;
 	printf("CAM: (%f, %f, %f)\n", camera_location.coord.x, camera_location.coord.z, camera_location.coord.y);
 
-	move_cursor_up(58);
+	move_cursor_up(14);
 
 	(void)texture;
 	(void)window;
