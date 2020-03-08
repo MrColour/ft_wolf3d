@@ -6,7 +6,7 @@
 /*   By: jjosephi <jjosephi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 17:57:44 by kmira             #+#    #+#             */
-/*   Updated: 2020/03/08 09:35:27 by jjosephi         ###   ########.fr       */
+/*   Updated: 2020/03/08 10:38:39 by jjosephi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,7 @@ typedef struct s_map
 typedef struct s_rayhit
 {
 	t_vector3f pos;
-	int side;
+	int side;//0 = up, 1 = down, 2 = left, 3 = right
 }				t_rayhit;
 
 typedef struct s_ray
