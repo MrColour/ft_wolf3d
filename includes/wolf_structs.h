@@ -6,7 +6,11 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 17:57:44 by kmira             #+#    #+#             */
+<<<<<<< HEAD
+/*   Updated: 2020/03/07 20:50:47 by jjosephi         ###   ########.fr       */
+=======
 /*   Updated: 2020/03/07 19:17:35 by kmira            ###   ########.fr       */
+>>>>>>> fb14069ad2b86cc2484a8174273454764a06adff
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +119,7 @@ typedef struct s_map
 typedef struct 	s_camera
 {
 	t_vector3f pos;
-	double length;
+	t_vector3f length;
 }				t_camera;
 
 typedef struct s_rayhit
@@ -136,7 +140,7 @@ typedef struct	s_player
 	t_vector3f pos;
 	t_vector3f dir;
 	t_camera cam;
-
+	double view_angle;
 }				t_player;
 
 #endif
