@@ -6,7 +6,7 @@
 /*   By: jjosephi <jjosephi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 17:58:30 by kmira             #+#    #+#             */
-/*   Updated: 2020/03/07 18:14:52 by jjosephi         ###   ########.fr       */
+/*   Updated: 2020/03/07 18:34:18 by jjosephi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -179,5 +179,11 @@ void	move_cursor_up(int amount);
 ** file: vectors.c
 */
 t_vector3f Vect_add(t_vector3f vect1, t_vector3f vect2);
+
+/*
+** -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-
+** file: matrix.c
+*/
+t_vector3f		rotate_vector(t_vector3f vector, double angle);
 
 #endif
