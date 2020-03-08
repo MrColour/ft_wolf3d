@@ -129,7 +129,6 @@ t_level_context	*level_loop_first_level(t_level_context *self)
 	t_wolf_window	*mgr_wolf_window;
 	t_level_context	*new_level;
 	t_level_first	*self_full;
-	int				i;
 
 	self_full = (t_level_first *)self;
 	mgr_wolf_window = self->mgr_wolf_window;
@@ -144,14 +143,9 @@ t_level_context	*level_loop_first_level(t_level_context *self)
 		}
 
 		update_player(self, &self_full->player);
-
 		self_full->h_game_state = 0;
 		print_map(self_full->map);
-
-		i = -1;
-		// while (self_full->animation_array[++i] != NULL)
 		render2_texture(self_full->animation_array[0]->texture, mgr_wolf_window, &self_full->player, self_full->map);
-
 		refresh_screen(mgr_wolf_window);
 		self->level_ticks++;
 	}
