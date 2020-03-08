@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   wolf.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jjosephi <jjosephi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 17:58:30 by kmira             #+#    #+#             */
-/*   Updated: 2020/03/07 18:34:18 by jjosephi         ###   ########.fr       */
+/*   Updated: 2020/03/07 19:15:19 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,9 +66,12 @@
 # define MOVE_LEFT 'L'
 # define MOVE_RIGHT 'R'
 
+# define ROTATE_LEFT '>'
+# define ROTATE_RIGHT '<'
+
 # define CLIP_BOUNDARY 4
 
-# define EXPAND_AMOUNT 5
+# define EXPAND_AMOUNT 1
 
 /*
 ** -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-
