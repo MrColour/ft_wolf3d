@@ -36,7 +36,7 @@ void	update_player(t_level_context *context, t_player *player)
 	int				pos_y;
 
 	level = (t_level_first *)context;
-	map = level->map;
+	map = level->map.map;
 
 	pos_x = (int)player->pos.coord.x;
 	pos_y = (int)player->pos.coord.y;
