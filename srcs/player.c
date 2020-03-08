@@ -6,12 +6,14 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/01 17:08:12 by marvin            #+#    #+#             */
-/*   Updated: 2020/03/05 01:15:22 by kmira            ###   ########.fr       */
+/*   Updated: 2020/03/07 18:55:31 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf_structs.h"
 #include "wolf.h"
+
+# define MOVEMENT_SPEED .1
 
 void	update_player(t_level_context *context, t_player *player)
 {
@@ -23,19 +25,19 @@ void	update_player(t_level_context *context, t_player *player)
 	level = (t_level_first *)context;
 	map = level->map;
 
-	pos_x = player->posx;
-	pos_y = player->posy;
+	pos_x = (int)player->pos.coord.x;
+	pos_y = (int)player->pos.coord.y;
 	if (level->h_game_state == MOVE_UP && map[pos_y - 1][pos_x] != 'W' && map[pos_y - 1][pos_x] != 'R')
-		player->posy--;
+		player->pos.coord.y -= MOVEMENT_SPEED;
 	else if (level->h_game_state == MOVE_DOWN && map[pos_y + 1][pos_x] != 'W' && map[pos_y + 1][pos_x] != 'R')
-		player->posy++;
+		player->pos.coord.y += MOVEMENT_SPEED;
 	else if (level->h_game_state == MOVE_RIGHT && map[pos_y][pos_x - 1] != 'W' && map[pos_y][pos_x - 1] != 'R')
-		player->posx--;
+		player->pos.coord.x -= MOVEMENT_SPEED;
 	else if (level->h_game_state == MOVE_LEFT && map[pos_y][pos_x + 1] != 'W' && map[pos_y][pos_x + 1] != 'R')
-		player->posx++;
+		player->pos.coord.x += MOVEMENT_SPEED;
 
 	map[pos_y][pos_x] = ' ';
-	map[player->posy][player->posx] = PLAYER_CHAR;
+	map[(int)player->pos.coord.y][(int)player->pos.coord.x] = PLAYER_CHAR;
 }
 
 void	get_player_position(t_player *player, char **map)
@@ -58,14 +60,13 @@ void	get_player_position(t_player *player, char **map)
 		i++;
 	}
 	printf("PLAYER: (%d, %d)\n", j, i);
-	player->posx = j - 1;
-	player->posy = i - 1;
+	player->pos.coord.x = j - 1;
+	player->pos.coord.y = i - 1;
 }
 
 void	player_init(t_player *player, char **map)
 {
-	player->viewangle = 90;
-	player->rotation = 0;
+	player->angle = 90;
 
 	get_player_position(player, map);
 }
