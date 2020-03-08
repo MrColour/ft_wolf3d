@@ -37,23 +37,6 @@ void	draw_texture(t_texture *texture, t_wolf_window *mgr_wolf_window)
 	}
 }
 
-double		distance_vector3f(t_vector3f a, t_vector3f b)
-{
-	double	result;
-	double	delta_x;
-	double	delta_y;
-	double	delta_z;
-
-	delta_x = a.coord.x - b.coord.x;
-	delta_y = a.coord.y - b.coord.y;
-	delta_z = a.coord.z - b.coord.z;
-
-	result = (delta_x * delta_x) + (delta_y * delta_y) + (delta_z * delta_z);
-
-	result = pow(result, .5);
-	return (result);
-}
-
 /*
 **          (y)|        /(z)
 **             |      /

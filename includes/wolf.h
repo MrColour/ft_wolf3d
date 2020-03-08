@@ -45,8 +45,6 @@
 ** MACROS
 */
 
-# define WIN_WIDTH 1024
-# define WIN_HEIGHT 512
 # define WIN_NAME "ft_Wolfenstien 3D"
 
 # define BYTES_PER_PIXEL 4

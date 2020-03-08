@@ -14,8 +14,11 @@
 # define WOLF_STRUCTS_H
 
 # include "glfw3.h"
-# include "wolf.h"
+
 # include <stdlib.h>
+
+# define WIN_WIDTH 1024
+# define WIN_HEIGHT 512
 
 typedef struct	s_level_context t_level_context;
 
