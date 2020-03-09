@@ -108,32 +108,32 @@ typedef	struct	s_wolf_window
 	t_color		background_color;
 }				t_wolf_window;
 
-typedef struct s_map
+typedef struct	s_map
 {
 	char		**map;
 	int			width;
-	int 		height;
+	int			height;
 }				t_map;
 
-
+//0 = up, 1 = down, 2 = left, 3 = right
 typedef struct s_rayhit
 {
-	t_vector3f pos;
-	int side;//0 = up, 1 = down, 2 = left, 3 = right
+	t_vector3f	pos;
+	int			side;
 }				t_rayhit;
 
-typedef struct s_ray
+typedef struct	s_ray
 {
-	t_vector3f vect;
-	t_rayhit hit;
-	char hits[WIN_WIDTH];
+	t_vector3f	vect;
+	t_rayhit	hit;
+	char		hits[WIN_WIDTH];
 }				t_ray;
 
 typedef struct	s_player
 {
-	double angle;
-	t_vector3f pos;
-	t_vector3f dir;
+	double		angle;
+	t_vector3f	pos;
+	t_vector3f	dir;
 }				t_player;
 
 #endif

@@ -42,9 +42,12 @@ FILES = \
 	initialization \
 	main \
 	map \
+	matrix \
 	meta_state \
 	player \
+	raycast \
 	texture_render \
+	vectors \
 	window_render \
 	wolf_destroy \
 

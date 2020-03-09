@@ -114,7 +114,7 @@ t_level_context	*level_loop_first_level(t_level_context *self)
 
 		update_player(self, &self_full->player);
 		print_map(self_full->map.map);
-		render2_texture(self_full->animation_array[0]->texture, mgr_wolf_window, &self_full->player, self_full->map.map);
+		render2_texture(self_full->animation_array[0]->texture, mgr_wolf_window, &self_full->player, &self_full->map);
 		refresh_screen(mgr_wolf_window);
 
 		self_full->h_game_state = 0;

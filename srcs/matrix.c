@@ -26,8 +26,8 @@ t_vector3f		vector_at_angle(double angle, double scale)
 	double		radian;
 
 	radian = to_radians(angle);
-	result.coord.x = cos(angle) * scale;
-	result.coord.y = sin(angle) * scale;
+	result.coord.x = cos(radian) * scale;
+	result.coord.y = sin(radian) * scale;
 	return (result);
 }
 

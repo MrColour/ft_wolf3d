@@ -84,6 +84,8 @@ t_wolf_window	wolf_initialize(void);
 ** library.
 */
 
+void			raycast(t_player *player, t_map *map, t_wolf_window *wolf_window);
+
 void			update_pixels(t_wolf_window *mgr_wolf_window);
 void			push_pixel(int x, int y, t_color color, uint8_t **pixel_array);
 void			clear_pixel_array(uint8_t **pixel_array);
@@ -141,7 +143,8 @@ t_animation	*wall2_animation(void);
 t_animation	*player_animation(void);
 
 void	render_texture(t_texture *texture, t_wolf_window *window, t_player *player, char **map);
-void	render2_texture(t_texture *texture, t_wolf_window *window, t_player *player, char **map);
+void	render2_texture(t_texture *texture, t_wolf_window *window, t_player *player, t_map *map);
+void	render_pixel_col(t_rayhit hitspot, t_map *map, t_player *player, t_wolf_window *wolf_window, int col);
 
 /*
 ** -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-
@@ -182,6 +185,7 @@ t_vector3f		vect_add(t_vector3f vect1, t_vector3f vect2);
 t_vector3f		ray_vect(t_player player, double rayangle);
 t_vector3f		vector_at_angle(double angle, double scale);
 t_vector3f		angle_to_vector(double angle);
+double			distance_vector3f(t_vector3f a, t_vector3f b);
 
 /*
 ** -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-

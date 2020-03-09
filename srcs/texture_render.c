@@ -53,12 +53,14 @@ void	draw_texture(t_texture *texture, t_wolf_window *mgr_wolf_window)
 ** z-axis = world depth
 */
 
-void	render2_texture(t_texture *texture, t_wolf_window *window, t_player *player, char **map)
+void	render2_texture(t_texture *texture, t_wolf_window *window, t_player *player, t_map *map)
 {
 	printf("PLAYER_ANGLE: %f\n", player->angle);
 	printf("PLAYER: (%f, %f)\n", player->pos.coord.x, player->pos.coord.y);
 
-	move_cursor_up(14);
+	raycast(player, map, window);
+
+	move_cursor_up(21);
 
 	(void)texture;
 	(void)window;
@@ -68,3 +70,26 @@ void	render2_texture(t_texture *texture, t_wolf_window *window, t_player *player
 }
 
 // https://www.geogebra.org/3d/rfkkvfuq
+
+void	render_pixel_col(t_rayhit hitspot, t_map *map, t_player *player, t_wolf_window *wolf_window, int col)
+{
+	double	depth;
+	t_color	color;
+	int		i;
+	int		height;
+
+	if (hitspot.pos.coord.x == -1 && hitspot.pos.coord.y == -1)
+		return ;
+	color.col_32bit = 0xf35588;
+	player->pos.coord.z = 0;
+	hitspot.pos.coord.z = 0;
+	depth = distance_vector3f(player->pos, hitspot.pos);
+	i = 0;
+	height = depth * 30;
+	while (i < height)
+	{
+		push_pixel(col, i + height / 2, color, wolf_window->pixel_array);
+		i++;
+	}
+	(void)map;
+}

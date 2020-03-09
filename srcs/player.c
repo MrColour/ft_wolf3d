@@ -84,7 +84,7 @@ void	get_player_position(t_player *player, char **map)
 
 void	player_init(t_player *player, char **map)
 {
-	player->angle = 0;
+	player->angle = 90;
 	player->dir.coord.x = 4;
 	player->dir.coord.y = 0;
 	get_player_position(player, map);
