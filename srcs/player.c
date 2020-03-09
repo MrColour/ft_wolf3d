@@ -79,7 +79,7 @@ void	get_player_position(t_player *player, char **map)
 		i++;
 	}
 	player->pos.coord.x = j - 1;
-	player->pos.coord.y = i - 1 + .5;
+	player->pos.coord.y = i - 1;
 }
 
 void	player_init(t_player *player, char **map)
