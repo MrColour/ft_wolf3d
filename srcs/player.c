@@ -14,7 +14,7 @@
 #include "wolf.h"
 
 #define MOVEMENT_SPEED .05
-#define ROTATE_SPEED 5.0
+#define ROTATE_SPEED 10.0
 
 void	modulo_angle(double *angle)
 {

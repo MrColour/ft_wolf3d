@@ -37,13 +37,13 @@ t_rayhit vector_step(t_vector3f m, t_map map, t_player player)
 		d_x = -1;
 	if (m.coord.y < 0)
 		d_y = -1;
-	x = player.pos.coord.x;
-	y = player.pos.coord.y;
+	x = player.pos.coord.x + 1;
+	y = player.pos.coord.y + 1;
 	toggle = 1;
 	while (1)
 	{
-		new_y = (m.coord.y / m.coord.x) * (x - player.pos.coord.x) + player.pos.coord.y;
-		new_x = (m.coord.x / m.coord.y) * (y - player.pos.coord.y) + player.pos.coord.x;
+		new_y = (m.coord.y / m.coord.x) * (x - player.pos.coord.x + 1) + player.pos.coord.y + 1;
+		new_x = (m.coord.x / m.coord.y) * (y - player.pos.coord.y + 1) + player.pos.coord.x + 1;
 		// printf("Here (%f, %f)\n", new_x, new_y);
 		if (new_x < 0 || new_x > 10 || new_y < 0 || new_y > 10 || y < 0 || y > 10 || x > 10 || x < 0)
 			break ;
@@ -67,7 +67,7 @@ t_rayhit vector_step(t_vector3f m, t_map map, t_player player)
 		y += d_y;
 		x += d_x;
 	}
-	printf("HIT at: (%f, %f)\n", hit.pos.coord.x, hit.pos.coord.y);
+	// printf("HIT at: (%f, %f)\n", hit.pos.coord.x, hit.pos.coord.y);
 	if (toggle == 1)
 		return (hit);
 	hit.pos.coord.x = -1;
@@ -85,7 +85,7 @@ void	raycast(t_player *player, t_map *map, t_wolf_window *wolf_window)
 	t_vector3f	edge_1;
 	t_vector3f	edge_2;
 
-	player->dir = angle_to_vector(player->angle + 180);
+	player->dir = angle_to_vector(player->angle);
 
 	edge_1 = rotate_vector(player->dir, WIN_VIEW_ANGLE);
 	edge_2 = rotate_vector(player->dir, -WIN_VIEW_ANGLE);
@@ -110,4 +110,5 @@ void	raycast(t_player *player, t_map *map, t_wolf_window *wolf_window)
 		ray.vect = vect_add(ray.vect, delta_ray);
 		i++;
 	}
+	printf("RAY VECT: (%f, %f)\n", ray.vect.coord.x, ray.vect.coord.y);
 }

@@ -60,7 +60,7 @@ void	render2_texture(t_texture *texture, t_wolf_window *window, t_player *player
 
 	raycast(player, map, window);
 
-	move_cursor_up(21);
+	move_cursor_up(22);
 
 	(void)texture;
 	(void)window;
@@ -88,7 +88,7 @@ void	render_pixel_col(t_rayhit hitspot, t_map *map, t_player *player, t_wolf_win
 	height = depth * 30;
 	while (i < height)
 	{
-		push_pixel(col, i + height / 2, color, wolf_window->pixel_array);
+		push_pixel(col, i - height / 2 + WIN_HEIGHT / 2, color, wolf_window->pixel_array);
 		i++;
 	}
 	(void)map;
