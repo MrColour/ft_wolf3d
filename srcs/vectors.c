@@ -21,7 +21,8 @@ double		distance_vector3f(t_vector3f a, t_vector3f b)
 
 	delta_x = a.coord.x - b.coord.x;
 	delta_y = a.coord.y - b.coord.y;
-	delta_z = a.coord.z - b.coord.z;
+	// delta_z = a.coord.z - b.coord.z;
+	delta_z = 0;
 
 	result = (delta_x * delta_x) + (delta_y * delta_y) + (delta_z * delta_z);
 

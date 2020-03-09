@@ -74,21 +74,35 @@ void	render2_texture(t_texture *texture, t_wolf_window *window, t_player *player
 void	render_pixel_col(t_rayhit hitspot, t_map *map, t_player *player, t_wolf_window *wolf_window, int col)
 {
 	double	depth;
-	t_color	color;
+	t_color	color_1;
+	t_color	color_2;
+	t_color	color_3;
+	t_color	color_4;
 	int		i;
 	int		height;
 
 	if (hitspot.pos.coord.x == -1 && hitspot.pos.coord.y == -1)
 		return ;
-	color.col_32bit = 0xf35588;
+	color_1.col_32bit = 0xf35588; //TOP      PINK
+	color_2.col_32bit = 0x1eb2a6; //BOTTOM   1eb2a6
+	color_3.col_32bit = 0xffe75e; //LEFT     YELLOW
+	color_4.col_32bit = 0xdab8f3; //RIGHT    PURPLE
 	player->pos.coord.z = 0;
 	hitspot.pos.coord.z = 0;
+
 	depth = distance_vector3f(player->pos, hitspot.pos);
 	i = 0;
-	height = depth * 30;
+	height = (5 / depth) * 70;
 	while (i < height)
 	{
-		push_pixel(col, i - height / 2 + WIN_HEIGHT / 2, color, wolf_window->pixel_array);
+		if (hitspot.side == TOP_SIDE)
+			push_pixel(col, i - height / 2 + WIN_HEIGHT / 2, color_1, wolf_window->pixel_array);
+		else if (hitspot.side == BOTTOM_SIDE)
+			push_pixel(col, i - height / 2 + WIN_HEIGHT / 2, color_2, wolf_window->pixel_array);
+		else if (hitspot.side == LEFT_SIDE)
+			push_pixel(col, i - height / 2 + WIN_HEIGHT / 2, color_3, wolf_window->pixel_array);
+		else
+			push_pixel(col, i - height / 2 + WIN_HEIGHT / 2, color_4, wolf_window->pixel_array);
 		i++;
 	}
 	(void)map;

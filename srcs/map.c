@@ -146,8 +146,14 @@ void	print_map(char **map)
 	i = 0;
 	while (map[i] != NULL)
 	{
-		printf("%s", map[i]);
+		// printf("%s", map[i]);
 		i++;
+	}
+	i--;
+	while (i >= 0)
+	{
+		printf("%s", map[i]);
+		i--;
 	}
 	printf("\n");
 }

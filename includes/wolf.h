@@ -66,6 +66,11 @@
 # define ROTATE_LEFT	0x010000
 # define ROTATE_RIGHT	0x100000
 
+# define LEFT_SIDE 2
+# define RIGHT_SIDE 3
+# define TOP_SIDE 0
+# define BOTTOM_SIDE 1
+
 # define CLIP_BOUNDARY 4
 
 # define EXPAND_AMOUNT 1

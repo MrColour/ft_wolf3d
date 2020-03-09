@@ -13,17 +13,12 @@
 #include "wolf_structs.h"
 #include "wolf.h"
 
-#define LEFT_SIDE 2
-#define RIGHT_SIDE 3
-#define TOP_SIDE 0
-#define BOTTOM_SIDE 1
-
 t_rayhit vector_step(t_vector3f m, t_map map, t_player player)
 {
-	double d_x;
-	double d_y;
-	double x;
-	double y;
+	double		d_x;
+	double		d_y;
+	double		x;
+	double		y;
 
 	double new_x;
 	double new_y;
@@ -31,23 +26,27 @@ t_rayhit vector_step(t_vector3f m, t_map map, t_player player)
 	t_rayhit hit;
 	int		toggle;
 
-	d_x = 1;
-	d_y = 1;
+	d_x = 0;
+	d_y = 0;
 	if (m.coord.x < 0)
 		d_x = -1;
+	else if (m.coord.x > 0)
+		d_x = 1;
 	if (m.coord.y < 0)
 		d_y = -1;
-	x = player.pos.coord.x + 1;
-	y = player.pos.coord.y + 1;
+	else if (m.coord.y > 0)
+		d_y = 1;
+	x = (player.pos.coord.x);
+	y = (player.pos.coord.y);
 	toggle = 1;
 	while (1)
 	{
-		new_y = (m.coord.y / m.coord.x) * (x - player.pos.coord.x + 1) + player.pos.coord.y + 1;
-		new_x = (m.coord.x / m.coord.y) * (y - player.pos.coord.y + 1) + player.pos.coord.x + 1;
+		new_y = (m.coord.y / m.coord.x) * (x - player.pos.coord.x) + player.pos.coord.y;
+		new_x = (m.coord.x / m.coord.y) * (y - player.pos.coord.y) + player.pos.coord.x;
 		// printf("Here (%f, %f)\n", new_x, new_y);
 		if (new_x < 0 || new_x > 10 || new_y < 0 || new_y > 10 || y < 0 || y > 10 || x > 10 || x < 0)
 			break ;
-		if (map.map[(int)x][(int)new_y] == 'W')
+		if (map.map[(int)new_y][(int)x] == 'W' && new_x < new_y)
 		{
 			hit.pos.coord.x = x;
 			hit.pos.coord.y = new_y;
@@ -56,7 +55,25 @@ t_rayhit vector_step(t_vector3f m, t_map map, t_player player)
 			toggle = 1;
 			break ;
 		}
-		if (map.map[(int)new_x][(int)y] == 'W')
+		else if (map.map[(int)y][(int)new_x] == 'W' && new_y < new_x)
+		{
+			hit.pos.coord.x = new_x;
+			hit.pos.coord.y = y;
+			(m.coord.y > 0) ? (hit.side = TOP_SIDE) : (hit.side = BOTTOM_SIDE);
+			toggle = 1;
+			break ;
+		}
+
+		if (map.map[(int)new_y][(int)x] == 'W')
+		{
+			hit.pos.coord.x = x;
+			hit.pos.coord.y = new_y;
+			(m.coord.x > 0) ? (hit.side = RIGHT_SIDE) : (hit.side = LEFT_SIDE);
+			// printf("END\n");
+			toggle = 1;
+			break ;
+		}
+		if (map.map[(int)y][(int)new_x] == 'W')
 		{
 			hit.pos.coord.x = new_x;
 			hit.pos.coord.y = y;
