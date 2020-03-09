@@ -6,7 +6,7 @@
 /*   By: jjosephi <jjosephi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/01 16:54:08 by marvin            #+#    #+#             */
-/*   Updated: 2020/03/08 15:12:31 by jjosephi         ###   ########.fr       */
+/*   Updated: 2020/03/08 16:23:19 by jjosephi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,6 @@ t_ray	raycast(t_player *player, t_map *map)
 	{
 		ray.vect = ray_vect(*player, ray_angle);
 		ray_angle -= player->dir.coord.x/ WIN_WIDTH;
-	}
+ 	}
 	
 }
