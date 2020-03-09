@@ -44,7 +44,7 @@ t_vector3f	ray_vect(t_player player, double rayangle)
 	t_vector3f	ray;
 
 	ray = rotate_vector(player.dir, rayangle);
-	ray = Vect_add(ray, player.dir);
+	ray = vect_add(ray, player.dir);
 
 	return (ray);
 }

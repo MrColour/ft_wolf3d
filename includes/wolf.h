@@ -178,8 +178,10 @@ void	move_cursor_up(int amount);
 ** -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-
 ** file: vectors.c
 */
-t_vector3f Vect_add(t_vector3f vect1, t_vector3f vect2);
-t_vector3f ray_vect(t_player player, double rayangle);
+t_vector3f		vect_add(t_vector3f vect1, t_vector3f vect2);
+t_vector3f		ray_vect(t_player player, double rayangle);
+t_vector3f		vector_at_angle(double angle, double scale);
+t_vector3f		angle_to_vector(double angle);
 
 /*
 ** -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-

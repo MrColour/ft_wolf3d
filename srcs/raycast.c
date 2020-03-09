@@ -6,7 +6,7 @@
 /*   By: jjosephi <jjosephi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/01 16:54:08 by marvin            #+#    #+#             */
-/*   Updated: 2020/03/08 16:23:19 by jjosephi         ###   ########.fr       */
+/*   Updated: 2020/03/08 18:30:57 by jjosephi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,20 +62,36 @@ t_rayhit vector_step(t_vector3f m, t_map map, t_player player)
 	return (hit);
 }
 
+# define WIN_VIEW_ANGLE 45
+
 t_ray	raycast(t_player *player, t_map *map)
 {
-	int i;
-	int n = 0;
-	double ray_angle;
-	t_ray ray;
-	
+	int			i;
+	int			n = 0;
+	double		ray_angle;
+	t_ray		ray;
+	t_vector3f	delta_ray;
+	t_vector3f	edge_1;
+	t_vector3f	edge_2;
+	t_vector3f	at_ray;
+
+
 	i = 0;
 	ray_angle = player->dir.coord.x;
-	player->dir = rotate_vector(player->pos, player->angle);
+
+	player->dir = angle_to_vector(player->angle);
+
+	edge_1 = rotate_vector(player->dir, WIN_VIEW_ANGLE);
+	edge_2 = rotate_vector(player->dir, -WIN_VIEW_ANGLE);
+	
+	delta_ray.coord.x = ((edge_1.coord.x - edge_2.coord.x) / WIN_WIDTH);
+	delta_ray.coord.y = ((edge_1.coord.y - edge_2.coord.y) / WIN_WIDTH);
+	
+	ray.vect = rotate_vector(player->dir, WIN_VIEW_ANGLE);
+
 	while (i > player->dir.coord.x * -1)
 	{
-		ray.vect = ray_vect(*player, ray_angle);
-		ray_angle -= player->dir.coord.x/ WIN_WIDTH;
- 	}
-	
+		render_pixel_col(vector_step(ray.vect, *map, *player), map, player);
+		ray.vect = vect_add(ray.vect, delta_ray);
+	}
 }
