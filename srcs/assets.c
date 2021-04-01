@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   assets.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
+/*   By: home <home@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/28 00:57:39 by kmira             #+#    #+#             */
-/*   Updated: 2020/03/02 17:13:24 by kmira            ###   ########.fr       */
+/*   Updated: 2021/01/19 00:35:05 by home             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,5 +85,6 @@ t_texture	*create_texture(char *file_path)
 
 	fd = open(file_path, O_RDONLY);
 	texture = get_texture(fd);
+	close(fd);
 	return (texture);
 }

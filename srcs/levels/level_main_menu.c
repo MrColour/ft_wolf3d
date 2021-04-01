@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   level_main_menu.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
+/*   By: home <home@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/27 17:00:24 by kmira             #+#    #+#             */
-/*   Updated: 2020/03/01 13:10:54 by kmira            ###   ########.fr       */
+/*   Updated: 2021/01/19 00:41:52 by home             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ int		level_init_main_menu(t_level_context *level, t_wolf_window *mgr_wolf_window
 {
 	t_level_main_menu	*self_full;
 
+	printf("Level Init\n");
 	self_full = (t_level_main_menu *)level;
 
 	self_full->common_level.mgr_wolf_window = mgr_wolf_window;
@@ -29,11 +30,15 @@ int		level_init_main_menu(t_level_context *level, t_wolf_window *mgr_wolf_window
 
 	self_full->h_menu_index = 0;
 
-	self_full->animation_array = malloc(sizeof(*self_full->animation_array) * (3 + 1));
+	self_full->animation_array = malloc(sizeof(*(self_full->animation_array)) * (4 + 1));
+	printf("Level Finished\n");
 	self_full->animation_array[0] = tittle_animation();
+	printf("Level Finished\n");
 	self_full->animation_array[1] = play_button_animation();
+	printf("Level Finished\n");
 	self_full->animation_array[2] = quit_button_animation();
-	self_full->animation_array[3] = NULL;
+	printf("Level Finished\n");
+	// self_full->animation_array[3] = NULL;
 
 	return (1);
 }
@@ -44,13 +49,18 @@ int		level_running_main_menu(t_level_context *self)
 	t_level_main_menu	*self_full;
 
 	result = 1;
+
+	printf("Level Run\n");
+
 	self_full = (t_level_main_menu *)self;
+	printf("glw Works?\n");
 	if (glfwWindowShouldClose(self->mgr_wolf_window->window))
 		result = 0;
 	else if (self_full->h_game_state == 'e')
 		result = 0;
 	else if (self_full->h_game_state == ' ')
 		result = 0;
+	printf("glw worked\n");
 	return (result);
 }
 
@@ -59,6 +69,7 @@ void			level_get_input_main_menu(t_level_context *self)
 	t_level_main_menu	*level;
 	t_wolf_window		*wolf_window;
 
+	printf("Level Input\n");
 	glfwPollEvents();
 	level = (t_level_main_menu *)self;
 	wolf_window = level->common_level.mgr_wolf_window;
@@ -92,19 +103,20 @@ t_level_context	*level_loop_main_menu(t_level_context *self)
 	self_full = (t_level_main_menu *)self;
 	mgr_wolf_window = self->mgr_wolf_window;
 
+	printf("Level Loop\n");
 	while (self->is_running(self))
 	{
 
-		self->get_input(self);
+		// self->get_input(self);
 
-		change_animation(&self_full->animation_array[0], self);
-		draw_texture(self_full->animation_array[0]->texture, mgr_wolf_window);
+		// change_animation(&self_full->animation_array[0], self);
+		// draw_texture(self_full->animation_array[0]->texture, mgr_wolf_window);
 
-		change_animation(&self_full->animation_array[1], self);
-		draw_texture(self_full->animation_array[1]->texture, mgr_wolf_window);
+		// change_animation(&self_full->animation_array[1], self);
+		// draw_texture(self_full->animation_array[1]->texture, mgr_wolf_window);
 
-		change_animation(&self_full->animation_array[2], self);
-		draw_texture(self_full->animation_array[2]->texture, mgr_wolf_window);
+		// change_animation(&self_full->animation_array[2], self);
+		// draw_texture(self_full->animation_array[2]->texture, mgr_wolf_window);
 
 		refresh_screen(mgr_wolf_window);
 	}
@@ -130,6 +142,7 @@ t_level_context	*level_get_next_main_menu(struct s_level_context *self)
 
 int		level_clean_main_menu(t_level_context *self)
 {
+	printf("End\n");
 	(void)self;
 	return (42);
 }
